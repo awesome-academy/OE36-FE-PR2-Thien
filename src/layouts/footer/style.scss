@@ -1,0 +1,93 @@
+@import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
+
+.page__footer {
+    background-color: $color-mirage;
+
+    .footer__top {
+        .footer__logo {
+            @include align-center;
+            display: block;
+            padding: 30px 0;
+            width: fit-content;
+        }
+
+        .nav-menu {
+            padding-bottom: 30px;
+
+            .navbar__menu {
+                @include flex(row, center, center, wrap);
+                color: $color-manatee;
+
+                .navbar-menu__item {
+                    padding: 0 20px;
+                    position: relative;
+                    margin-bottom: 10px;
+
+                    &:nth-child(n+2) {
+                        border-left: 1px solid $color-ebony-clay;
+                    }
+
+                    &::before {
+                        @include pseudo(block, absolute);
+                        @include prefix(transition, all 0.3s);
+                        background-color: $color-manatee;
+                        bottom: -10px;
+                        left: 0;
+                        height: 1px;
+                        margin-left: 50%;
+                        width: 0;
+                    }
+
+                    &:hover::before {
+                        margin-left: 20px;
+                        width: calc(100% - 40px);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    .contact-info {
+        @include flex(row, center, center);
+        border-bottom: solid 1px $color-ebony-clay;
+        color: $color-manatee;
+        gap: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 30px;
+
+        .hotline {
+            @include flex-basis(46%);
+            text-align: right;
+            font-size: 16px;
+
+            i {
+                font-size: 20px;
+            }
+        }
+
+        .separate {
+            color: $color-ebony-clay;
+            margin: 0 10px;
+        }
+
+        .social__list {
+            @include flex-basis(45%);
+            font-size: 20px;
+
+            ul {
+                @include flex($gap: 30px);
+            }
+        }
+    }
+
+    .copyright {
+        padding-bottom: 10px;
+        text-align: center;
+        color: $color-manatee;
+    }
+
+
+}

@@ -1,0 +1,88 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.bottom-menu__content {
+    .menu__toggle {
+        display: none;
+
+        @include media-query(medium, max) {
+            background-color: $color-black-pearl;
+            border: 0;
+            color: $color-white;
+            cursor: pointer;
+            display: block;
+            font-size: 20px;
+            padding: 20px;
+
+            :hover {
+                color: $color-selective-yellow;
+            }
+        }
+    }
+
+    .navbar__menu {
+        @include flex(row, space-between, center, nowrap);
+        @include prefix(transition, all 0.6s);
+        overflow: hidden;
+        position: relative;
+
+        @include media-query(medium, max) {
+            @include flex-wrap(wrap);
+            min-height: 0px;
+            max-height: 0px;
+
+            &.dropdown {
+                min-height: 300px;
+                max-height: 400px;
+
+                .navbar-menu__item {
+                    @include flex-grow(1);
+                    height: auto;
+                    min-width: 60%;
+                    visibility: visible;
+                }
+            }
+
+            .navbar-menu__item {
+                @include flex-basis(0 !important);
+                overflow: hidden;
+            }
+        }
+
+        .navbar-menu__item {
+            @include flex-basis(calc(100% / 6));
+            color: $color-white;
+            position: relative;
+
+            a {
+                @include prefix(transition, all 1s);
+                display: inline-block;
+                padding: 20px 0;
+                text-transform: uppercase;
+                text-align: center;
+                width: 100%;
+
+                &.active {
+                    background-color: $color-selective-yellow;
+                    color: $color-black-pearl;
+                }
+            }
+
+            &::before {
+                @include pseudo(block, absolute);
+                @include prefix(transition, all 0.3s);
+                bottom: 0;
+                height: 5px;
+                margin-left: 50%;
+                width: 0;
+                border-radius: 5px 5px 0 0;
+            }
+
+            &:hover::before {
+                background-color: $color-selective-yellow;
+                margin-left: 10px;
+                width: calc(100% - 20px);
+            }
+        }
+    }
+}

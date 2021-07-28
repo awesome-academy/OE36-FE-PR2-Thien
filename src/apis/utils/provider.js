@@ -1,6 +1,6 @@
 import axios from "axios";
-import getQueryString from "@/utils/queryString";
-import { BASE_URL } from "@/utils/constant";
+import { BASE_URL } from "utils/constant";
+import getQueryString from "utils/queryString";
 import { handleError, handleResponse } from "./response";
 
 const get = (collection, filters = {}) => {

@@ -1,0 +1,17 @@
+{
+    "home": "Home",
+    "movies": "Movies",
+    "cinemas": "Cinemas",
+    "news": "News",
+    "promotions": "Promotions",
+    "contact": "Contact Us",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "profile": "Profile",
+    "nowShowing": "Now showing",
+    "comingSoon": "Coming soon",
+    "showMore": "Show more",
+    "minute": "minute",
+    "bookNow": "Book now"
+}

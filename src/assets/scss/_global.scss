@@ -1,3 +1,5 @@
+@import "./mixins";
+
 body {
   margin: 0;
   font-size: 14px;
@@ -5,4 +7,24 @@ body {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  box-sizing: border-box;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include media-query("medium", min) {
+    width: 750px;
+  }
+
+  @include media-query("large", min) {
+    width: 970px;
+  }
+
+  @include media-query("extra", min) {
+    width: 1170px;
+  }
 }

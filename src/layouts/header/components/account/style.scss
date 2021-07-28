@@ -1,0 +1,84 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.setting__account {
+  @include prefix(transition, all 0.3s);
+  @include flex(row, flex-start, center);
+  box-sizing: border-box;
+  color: $color-white;
+  cursor: pointer;
+  margin-right: 10px;
+  position: relative;
+  padding: 0 20px;
+
+  .account {
+    @include prefix(transition, all 0.3s);
+    @include flex(row, flex-start, center);
+    box-sizing: border-box;
+    color: $color-white;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      color: $color-manatee;
+    }
+  }
+
+  .account__avatar {
+    @include box(35px);
+    @include flex(row, center, center);
+    @include prefix(transition, all 0.3s);
+    border-radius: 50%;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+
+  .account__dropdown {
+    margin: 0 10px;
+
+    .dropdown__button {
+      background-color: $color-mirage;
+      border: 0;
+      color: $color-white;
+      font-size: 18px;
+      outline: 0;
+    }
+
+    .dropdown__menu {
+      @include prefix(box-shadow, 0 1px 5px rgba(0, 0, 0, 0.1));
+      background-color: $color-white;
+      border-radius: 4px;
+      color: $color-black-pearl;
+      display: none;
+      right: 30px;
+      top: 50px;
+      position: absolute;
+      padding: 4px;
+      z-index: 200;
+
+      &.active {
+        display: block;
+      }
+
+      .menu__item {
+        @include prefix(transition, all 0.3s);
+        border-radius: 4px;
+        padding: 10px 8px;
+        margin: 5px;
+        min-width: 80px;
+        white-space: nowrap;
+
+        a {
+          display: inline-block;
+          height: 100%;
+          width: 100%;
+        }
+
+        &:hover {
+          background-color: $color-manatee;
+          color: $color-white;
+        }
+      }
+    }
+  }
+}

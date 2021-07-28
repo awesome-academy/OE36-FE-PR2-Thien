@@ -1,0 +1,24 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.language-list {
+  @include flex(row, flex-start, center);
+  color: $color-manatee;
+  height: 100%;
+
+  .language-list__item {
+    @include prefix(transition, all 0.3s);
+    cursor: pointer;
+
+    &.active {
+      color: $color-selective-yellow;
+    }
+  }
+
+  .separate {
+    background-color: $color-manatee;
+    height: 50%;
+    margin: 0 10px;
+    width: 1px;
+  }
+}

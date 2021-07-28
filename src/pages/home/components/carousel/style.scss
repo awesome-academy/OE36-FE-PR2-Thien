@@ -1,0 +1,29 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.carousel {
+    background-color: $color-black-pearl;
+    
+    img.dx-gallery-item-image {
+        object-fit: cover;
+        width: 100%;
+        max-width: 2200px;
+    }
+    
+    .dx-gallery {
+        height: 40vw !important;
+        width: 100% !important;
+        max-height: 700px !important;
+        @include align-center;
+    }
+    
+    .dx-gallery-indicator-item {
+        border-radius: 0 !important;
+        border: 0 !important;
+        background-color: $color-manatee;
+    }
+    
+    .dx-gallery-indicator-item-active, .dx-gallery-indicator-item-selected {
+        background-color: $color-selective-yellow !important;
+    }
+}

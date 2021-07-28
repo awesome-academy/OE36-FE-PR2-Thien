@@ -1,0 +1,97 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.movie-item {
+    @include prefix(box-shadow, 0 1px 5px rgba(0, 0, 0, 0.344));
+    margin-bottom: 15px;
+
+    .movie__image {
+        position: relative;
+
+        .overlay {
+            @include prefix(transition, all 0.3s);
+            background-color: #00000080;
+            bottom: 0;
+            height: 0;
+            overflow: hidden;
+            position: absolute;
+            width: 100%;
+
+            .view-trailer {
+                @include prefix(transition, all 0.3s);
+                @include box(30%);
+                @include align-center;
+                @include flex(row, center, center);
+                background: url("../../assets/images/btnplay.png") no-repeat top center;
+                color: $color-white;
+                cursor: pointer;
+                font-size: 100px;
+                margin-top: 30%;
+            }
+
+            .booking {
+                @include prefix(transition, all 0.3s);
+                @include align-center;
+                position: relative;
+                border: solid 2px $color-white;
+                color: $color-white;
+                cursor: pointer;
+                display: block;
+                min-width: 0%;
+                margin-top: 20%;
+                padding: 10px;
+                text-align: center;
+                width: fit-content;
+
+                span {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                &::before {
+                    @include prefix(transition, all 0.3s);
+                    @include pseudo(block, absolute);
+                    width: 0;
+                    z-index: 1;
+                    top: 0px;
+                    left: 50%;
+                    height: 100%;
+                    background-color: $color-ebony-clay;
+                }
+
+                &:hover::before {
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .movie__info {
+        padding: 10px;
+
+        .movie__name {
+            position: relative;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .movie__genre {
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: $color-manatee;
+        }
+    }
+
+    &:hover {
+        .overlay {
+            height: 100%;
+
+            .booking {
+                min-width: 50%;
+            }
+        }
+    }
+}
