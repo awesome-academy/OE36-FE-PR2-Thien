@@ -1,0 +1,77 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+section {
+    .section__header {
+        margin: 10px 0;
+        padding: 15px 0;
+        text-align: center;
+        background-color: $color-mirage;
+
+
+        .section__title {
+            @include align-center;
+            color: $color-white;
+            font-size: 18px;
+            text-transform: uppercase;
+            width: fit-content;
+
+            &::after,
+            &::before {
+                @include align-center;
+                @include pseudo(block, relative);
+                background-color: $color-selective-yellow;
+                border-radius: 5px;
+                height: 5px;
+            }
+
+            &::before {
+                margin-bottom: 10px;
+                width: 80%;
+            }
+
+            &::after {
+                margin-top: 10px;
+                width: 50%;
+            }
+
+
+        }
+    }
+
+    .section__content {
+        ul {
+            @include flex(row, space-between);
+
+            @include media-query(medium, max) {
+                @include flex-wrap(wrap);
+            }
+
+            li {
+                @include flex-basis(calc((100% - 30px) / 4));
+
+                @include media-query(medium, max) {
+
+                    @include flex-basis(calc((100% - 15px) / 2));
+                }
+
+                @include media-query(small, max) {
+                    @include flex-basis(100%);
+                }
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .section__footer {
+        text-align: right;
+        margin: 15px 0 20px;
+        
+        a:hover {
+            color: $color-manatee;
+        }
+    }
+}

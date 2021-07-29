@@ -1,9 +1,19 @@
-@mixin flex($direction: row, $content: null, $items: null, $wrap: null) {
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -khtml-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin flex($direction: row, $content: null, $items: null, $wrap: null, $gap: null) {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  gap: $gap;
   @include flex-direction($direction);
   @include justify-content($content);
   @include align-items($items);
@@ -117,21 +127,19 @@
 @mixin placeholder {
   &::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
-    @content
+    @content;
   }
   &::-moz-placeholder {
     /* Firefox 19+ */
-    @content
-
+    @content;
   }
   &:-ms-input-placeholder {
     /* IE 10+ */
-    @content
-
+    @content;
   }
   &:-moz-placeholder {
     /* Firefox 18- */
-    @content
+    @content;
   }
 }
 
@@ -151,5 +159,27 @@
     @media only screen and (#{$type}-width: $width) {
       @content;
     }
+  }
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content
+  }
+  @-moz-keyframes #{$name} {
+    @content
+  }
+  @-o-keyframes #{$name} {
+    @content
+  }
+  
+  @keyframes #{$name} {
+    @content
   }
 }
