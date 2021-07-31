@@ -2,10 +2,18 @@
 @import "src/assets/scss/variables";
 
 .bottom-menu__content {
+    position: relative;
+
     .menu__toggle {
         display: none;
+    }
 
-        @include media-query(medium, max) {
+    .navbar__account {
+        display: none;
+    }
+
+    @include media-query(medium, max) {
+        .menu__toggle {
             background-color: $color-black-pearl;
             border: 0;
             color: $color-white;
@@ -18,6 +26,31 @@
                 color: $color-selective-yellow;
             }
         }
+
+        .navbar__account {
+            display: block;
+            right: 15px;
+            position: absolute;
+            top: 15px;
+
+            .setting__account {
+                padding: 0;
+                margin: 0;
+            }
+
+            .account__dropdown {
+                margin: 5px 0 0 10px;
+
+                .dropdown__button {
+                    background-color: $color-black-pearl;
+                }
+            }
+
+            .dropdown__menu {
+                right: 0px;
+            }
+        }
+
     }
 
     .navbar__menu {

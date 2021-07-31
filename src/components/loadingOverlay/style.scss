@@ -1,0 +1,72 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.loading-overlay__wrap {
+    @include box(100%);
+    background-color: $color-overlay;
+    position: fixed;
+    z-index: 50;
+
+    .loading-overlay {
+        @include centerer();
+        color: $color-white;
+        font-size: 16px;
+        top: 40%;
+
+        span {
+            display: inline-block;
+            margin: 30px;
+            max-width: 200px;
+            padding: 0 20px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        &::before,
+        &::after {
+            @include pseudo();
+            @include centerer(true, false);
+            display: block;
+            background-color: $color-selective-yellow;
+            border-radius: 5px;
+            height: 10px;
+        }
+
+        &::before {
+            @include prefix(animation, loadingAnimationExpand 4s infinite);
+            margin-bottom: 30px;
+        }
+
+        &::after {
+            @include prefix(animation, loadingAnimationCollapse 4s infinite);
+        }
+    }
+}
+
+@include keyframes(loadingAnimationExpand) {
+    0% {
+        width: 50%;
+    }
+
+    50% {
+        width: 90%;
+    }
+
+    100% {
+        width: 50%;
+    }
+}
+
+@include keyframes(loadingAnimationCollapse) {
+    0% {
+        width: 90%;
+    }
+
+    50% {
+        width: 50%;
+    }
+
+    100% {
+        width: 90%;
+    }
+}

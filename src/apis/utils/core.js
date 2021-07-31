@@ -8,8 +8,8 @@ export class ApiCore {
       };
     }
     if (options.post) {
-      this.post = (model) => {
-        return apiProvider.post(options.collection, model);
+      this.post = (model, collection) => {
+        return apiProvider.post(collection || options.collection, model);
       };
     }
     if (options.put) {
@@ -20,6 +20,11 @@ export class ApiCore {
     if (options.remove) {
       this.remove = (id) => {
         return apiProvider.remove(options.collection, id);
+      };
+    }
+    if (options.upload) {
+      this.upload = (files) => {
+        return apiProvider.upload(options.collection, files);
       };
     }
   }

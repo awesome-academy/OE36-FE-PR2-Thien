@@ -8,7 +8,7 @@
   top: 0;
   width: 100%;
   z-index: 100;
-  
+
 
   .header-content__wrap {
     width: 100%;
@@ -23,6 +23,12 @@
     background-color: $color-mirage;
     padding-top: 15px;
     padding-bottom: 15px;
+
+    @include media-query(medium, max) {
+      .setting__account {
+        display: none;
+      }
+    }
   }
 
   .header-top__setting {

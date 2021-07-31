@@ -20,7 +20,7 @@ function MoviesList(props) {
       </header>
       <main className="section__content">
         <ul>
-          {props.listData.map((movie, index) => (
+          {props.listData?.map((movie, index) => (
             <li key={index}>
               <MovieItem
                 name={movie.name}

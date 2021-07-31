@@ -32,4 +32,19 @@ const remove = (collection, id) => {
     .catch(handleError);
 };
 
-export const apiProvider = { get, post, put, remove };
+const upload = (collection, files) => {
+  let formData = new FormData();
+  for (let index = 0; index < files.length; index++) {
+    formData.append(collection, files[index]);
+  }
+  return axios
+    .post(`${BASE_URL}/${collection}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then(handleResponse)
+    .catch(handleError);
+};
+
+export const apiProvider = { get, post, put, remove, upload };
