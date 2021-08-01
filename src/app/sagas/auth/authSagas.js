@@ -7,6 +7,38 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { ERROR_NOTIFICATION, LOGIN_NOTIFICATION } from "utils/constant";
 import { authAction } from "./authActions";
 
+export function* doLogin({ payload }) {
+  yield put(changeShowLoading(true));
+  let response;
+  try {
+    response = yield call(() => apiAuth.login(payload));
+    if (response.status >= 200 && response.status < 300) {
+      yield put({
+        type: authAction.DO_SUCCEEDED,
+        payload: {
+          ...response.data.user,
+          token: response.data.accessToken,
+        },
+      });
+    } else {
+      yield put({
+        type: authAction.DO_FAILED,
+        payload: response,
+      });
+    }
+  } catch (error) {
+    yield put({
+      type: authAction.DO_FAILED,
+      payload: response,
+    });
+  }
+  yield put(changeShowLoading(false));
+}
+
+export function* watchLogin() {
+  yield takeLatest(authAction.LOGIN, doLogin);
+}
+
 export function* doSignup({ payload }) {
   yield put(changeShowLoading(true));
   try {

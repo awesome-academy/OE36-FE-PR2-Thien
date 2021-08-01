@@ -5,6 +5,7 @@ import Account from "./components/account";
 import NavBar from "./components/navbar";
 import logo from "assets/images/logo.png";
 import "./style.scss";
+import { appRoutes } from "routers/routesConfig";
 
 function Header() {
   return (
@@ -12,7 +13,7 @@ function Header() {
       <div className="header-content__wrap">
         <section className="header__top container">
           <div className="header-top__logo">
-            <Link to="/">
+            <Link to={appRoutes.home.path}>
               <img src={logo} alt="logo cinema" />
             </Link>
           </div>

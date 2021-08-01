@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "app/sagas/auth/authActions";
 import "./style.scss";
 import serializeForm from "utils/serializeForm";
+import { VIETNAMESE_NAME_REGEX } from "utils/constant";
 
 function Signup() {
   const dispatch = useDispatch();
@@ -94,7 +95,7 @@ function Signup() {
                   <Validator>
                     <RequiredRule message={`${t("name")} ${t("isRequired")}`} />
                     <PatternRule
-                      pattern="^[a-zA-Z]+$"
+                      pattern={VIETNAMESE_NAME_REGEX}
                       message={`${t("name")} ${t("isInvalid")}`}
                     />
                     <StringLengthRule
@@ -113,9 +114,6 @@ function Signup() {
                 <span>*</span>
                 <DateBox
                   name="dateOfBirth"
-                  onValueChange={(value) => {
-                    console.log(value);
-                  }}
                   displayFormat="dd/MM/yyyy"
                   invalidDateMessage={`${t("dateOfBirth")} ${t("isInvalid")}`}
                   placeholder="dd/MM/yyyy"

@@ -2,6 +2,19 @@
 @import "src/assets/scss/variables";
 
 
+.signup {
+    @include prefix(box-shadow, 0 1px 5px rgba(0, 0, 0, 0.344));
+
+    @include media-query(medium, max) {
+        max-width: 500px;
+        padding: 10px 15px !important;
+    }
+
+    margin: 50px auto;
+    max-width: 700px;
+    padding: 10px 60px !important;
+}
+
 .signup__header {
     text-align: center;
     width: 100%;
@@ -17,7 +30,6 @@
     @include align-center;
     color: $color-black-pearl;
     margin-top: 50px;
-    max-width: 500px;
 
     .fieldset__header {
         font-size: 18px;

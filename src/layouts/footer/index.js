@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "assets/images/logo.png";
-import ROUTES_CONFIG from "routers/routesConfig";
+import { appRoutes } from "routers/routesConfig";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./style.scss";
@@ -15,12 +15,12 @@ function Footer() {
         </div>
         <nav className="nav-menu">
           <ul className="navbar__menu">
-            {ROUTES_CONFIG.APP_ROUTES.map((route, index) => {
+            {Object.entries(appRoutes).map(([name, route], index) => {
               if (route.navbar) {
                 return (
                   <li key={index} className="navbar-menu__item">
                     <Link to={route.path}>
-                      <span>{t(route.name)}</span>
+                      <span>{t(name)}</span>
                     </Link>
                   </li>
                 );
