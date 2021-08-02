@@ -1,21 +1,27 @@
+import { logout } from "app/features/account/accountSlice";
 import useClickOutside from "hooks/useClickOutside";
 import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { appRoutes } from "routers/routesConfig";
 import { BASE_URL, IMAGE_COLLECTION } from "utils/constant";
 import "./style.scss";
 
 function Account() {
   const ref = useRef();
+  const dispatch = useDispatch();
   const account = useSelector((state) => state.account);
   const { t } = useTranslation();
   const [showDropdown, setShowDropdown] = useState(false);
   const showDropdownMenu = () => {
     setShowDropdown(!showDropdown);
   };
+  const handleLogout = () => {
+    setShowDropdown(false);
+    dispatch(logout());
+  };
   useClickOutside(ref, () => setShowDropdown(false));
-
   return (
     <div className="setting__account">
       <div className="account">
@@ -30,7 +36,7 @@ function Account() {
           {account.token ? (
             <span>{account.name}</span>
           ) : (
-            <Link to="/login">
+            <Link to={appRoutes.login.path}>
               <span>{t("login")}</span>
             </Link>
           )}
@@ -45,12 +51,12 @@ function Account() {
             <nav>
               <ul>
                 <li className="menu__item">
-                  <Link to="/profile">
+                  <Link to={appRoutes.profile.path}>
                     <span>{t("profile")}</span>
                   </Link>
                 </li>
-                <li className="menu__item">
-                  <Link to="/">
+                <li className="menu__item" onClick={handleLogout}>
+                  <Link to={appRoutes.home.path}>
                     <span>{t("logout")}</span>
                   </Link>
                 </li>

@@ -2,7 +2,7 @@ import useClickOutside from "hooks/useClickOutside";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import ROUTES_CONFIG from "routers/routesConfig";
+import { appRoutes } from "routers/routesConfig";
 import Account from "../account";
 import "./style.scss";
 
@@ -43,8 +43,8 @@ function NavBar() {
       </div>
       <nav>
         <ul className={`navbar__menu ${dropdown && "dropdown"}`}>
-          {ROUTES_CONFIG.APP_ROUTES.map(
-            (route, index) =>
+          {Object.entries(appRoutes).map(
+            ([name, route], index) =>
               route.navbar && (
                 <li
                   key={index}
@@ -52,7 +52,7 @@ function NavBar() {
                   onClick={collapseMenu}
                 >
                   <NavLink to={route.path}>
-                    <span>{t(route.name)}</span>
+                    <span>{t(name)}</span>
                   </NavLink>
                 </li>
               )

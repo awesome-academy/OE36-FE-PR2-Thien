@@ -3,6 +3,8 @@ import apiMovie from "apis/tasks/apiMovie";
 import { changeShowLoading } from "app/features/common";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { warning } from "react-toastify-redux";
+import { ERROR_NOTIFICATION } from "utils/constant";
 import Carousel from "./components/carousel";
 import MoviesList from "./components/movies";
 
@@ -26,7 +28,7 @@ function Home() {
         setComingSoon(comingSoon.data);
       });
     } catch (error) {
-      console.log(error);
+      dispatch(warning(error.message || ERROR_NOTIFICATION));
     }
   }, []);
 

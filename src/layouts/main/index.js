@@ -3,7 +3,7 @@ import Error from "pages/error";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import ROUTES_CONFIG from "routers/routesConfig";
+import { appRoutes } from "routers/routesConfig";
 import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify-redux";
@@ -16,9 +16,9 @@ function Main() {
     <main className="page__main">
       {commonSetting.showLoading && <LoadingOverlay />}
       <Switch>
-        {ROUTES_CONFIG.APP_ROUTES.map((route, index) => (
+        {Object.entries(appRoutes).map(([name, route]) => (
           <Route
-            key={index}
+            key={name}
             path={route.path}
             exact={route.exact}
             render={() => <route.component />}

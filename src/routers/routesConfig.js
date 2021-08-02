@@ -8,63 +8,61 @@ import Promotions from "pages/promotions";
 import Signup from "pages/signup";
 
 const ROUTES_CONFIG = {
-  APP_ROUTES: [
-    {
+  APP_ROUTES: {
+    home: {
       path: "/home",
-      name: "home",
       exact: true,
       navbar: true,
       component: Home,
     },
-    {
+    movies: {
       path: "/movies",
-      name: "movies",
       exact: true,
       navbar: true,
       component: Movies,
     },
-    {
+    cinemas: {
       path: "/cinemas",
-      name: "cinemas",
       exact: true,
       navbar: true,
       component: Cinemas,
     },
-    {
+    news: {
       path: "/news",
-      name: "news",
       exact: true,
       navbar: true,
       component: News,
     },
-    {
+    promotions: {
       path: "/promotions",
-      name: "promotions",
       exact: true,
       navbar: true,
       component: Promotions,
     },
-    {
+    contact: {
       path: "/contact",
-      name: "contact",
       exact: true,
       navbar: true,
       component: Contact,
     },
-    {
+    login: {
       path: "/login",
-      name: "login",
       exact: true,
       component: Login,
     },
-    {
+    signup: {
       path: "/signup",
-      name: "signup",
       exact: true,
       component: Signup,
     },
-  ],
+    profile: {
+      path: "/profile",
+      exact: true,
+    },
+  },
   ADMIN_ROUTES: [],
 };
 
+export const appRoutes = ROUTES_CONFIG.APP_ROUTES;
+export const adminRoutes = ROUTES_CONFIG.ADMIN_ROUTES;
 export default ROUTES_CONFIG;
