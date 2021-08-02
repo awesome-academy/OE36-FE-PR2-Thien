@@ -16,7 +16,7 @@ function MovieItem(props) {
   return (
     <div className="movie-item">
       <div className="movie__image">
-        <img src={props.imageSrc} alt={props.name} loading="lazy" />
+        <img src={props.imageSrc} alt={props.name} loading="lazy" width="272" height="340"/>
         <div className="overlay">
           <div className="view-trailer"></div>
           <div className="booking">

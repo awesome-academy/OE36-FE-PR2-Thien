@@ -15,13 +15,17 @@ function Footer() {
         </div>
         <nav className="nav-menu">
           <ul className="navbar__menu">
-            {ROUTES_CONFIG.map((route, index) => (
-              <li key={index} className="navbar-menu__item">
-                <Link to={route.path}>
-                  <span>{t(route.name)}</span>
-                </Link>
-              </li>
-            ))}
+            {ROUTES_CONFIG.APP_ROUTES.map((route, index) => {
+              if (route.navbar) {
+                return (
+                  <li key={index} className="navbar-menu__item">
+                    <Link to={route.path}>
+                      <span>{t(route.name)}</span>
+                    </Link>
+                  </li>
+                );
+              }
+            })}
           </ul>
         </nav>
       </section>

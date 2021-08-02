@@ -183,3 +183,24 @@
     @content
   }
 }
+
+
+@mixin centerer($horizontal: true, $vertical: true) {
+  position: absolute;
+
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    @include prefix(transform, translate(-50%, -50%));
+  }
+
+  @else if ($horizontal) {
+    left: 50%;
+    @include prefix(transform, translate(-50%, 0));
+  }
+
+  @else if ($vertical) {
+    top: 50%;
+    @include prefix(transform, translate(0, -50%));
+  }
+}

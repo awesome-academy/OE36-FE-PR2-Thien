@@ -3,10 +3,12 @@ export function handleResponse(response) {
     if (response.headers["x-total-count"]) {
       return {
         total: Number(response.headers["x-total-count"]),
+        status: response.status,
         data: response.data,
       };
     }
     return {
+      status: response.status,
       data: response.data,
     };
   }
@@ -15,9 +17,8 @@ export function handleResponse(response) {
 }
 
 export function handleError(error) {
-  if (error.data) {
-    return error.data;
+  if (error.response) {
+    return error.response;
   }
-
   return error;
 }

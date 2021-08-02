@@ -3,10 +3,24 @@
 
 .movie-item {
     @include prefix(box-shadow, 0 1px 5px rgba(0, 0, 0, 0.344));
+    background-color: $color-white;
     margin-bottom: 15px;
 
     .movie__image {
         position: relative;
+
+        img {
+            min-width: 100%;
+            max-width: 100%;
+            height: auto;
+            background: $color-white;
+            background: linear-gradient(0.25turn,
+                    $color-white 10%,
+                    $color-alto 50%,
+                    $color-white 90%);
+            background-size: 320px 640px;
+            @include prefix(animation, gradientLoading 3s linear infinite forwards);
+        }
 
         .overlay {
             @include prefix(transition, all 0.3s);
@@ -51,12 +65,12 @@
                 &::before {
                     @include prefix(transition, all 0.3s);
                     @include pseudo(block, absolute);
+                    background-color: $color-ebony-clay;
+                    height: 100%;
+                    left: 50%;
+                    top: 0px;
                     width: 0;
                     z-index: 1;
-                    top: 0px;
-                    left: 50%;
-                    height: 100%;
-                    background-color: $color-ebony-clay;
                 }
 
                 &:hover::before {
@@ -93,5 +107,19 @@
                 min-width: 50%;
             }
         }
+    }
+}
+
+@include keyframes(gradientLoading) {
+    0% {
+        background-position: 0% 0;
+    }
+
+    50% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: 0% 0;
     }
 }

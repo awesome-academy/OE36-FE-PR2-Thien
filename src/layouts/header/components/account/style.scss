@@ -31,10 +31,16 @@
     border-radius: 50%;
     font-size: 18px;
     margin-right: 10px;
+    overflow: hidden;
+
+    img {
+      object-fit: contain;
+      width: 100%;
+    }
   }
 
   .account__dropdown {
-    margin: 0 10px;
+    margin: 5px 10px 0 10px;
 
     .dropdown__button {
       background-color: $color-mirage;
@@ -45,19 +51,22 @@
     }
 
     .dropdown__menu {
+      @include prefix(transition, all 0.3s);
       @include prefix(box-shadow, 0 1px 5px rgba(0, 0, 0, 0.1));
       background-color: $color-white;
       border-radius: 4px;
       color: $color-black-pearl;
-      display: none;
-      right: 30px;
-      top: 50px;
-      position: absolute;
+      max-height: 0;
+      visibility: hidden;
       padding: 4px;
+      position: absolute;
+      right: 30px;
+      top: 40px;
       z-index: 200;
 
       &.active {
-        display: block;
+        visibility: visible;
+        max-height: 400px;
       }
 
       .menu__item {
