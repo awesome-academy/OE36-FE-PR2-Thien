@@ -1,0 +1,11 @@
+@import "src/assets/scss/mixins";
+
+.filter-bar {
+    @include flex(row, flex-start, center, nowrap, 15px);
+
+    .dx-textbox {
+        &:last-child {
+            margin-left: auto;
+        }
+    }
+}

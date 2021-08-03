@@ -1,5 +1,10 @@
 @import "./mixins";
 
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -9,7 +14,6 @@ body {
   margin: 0;
   font-size: 14px;
   font-family: Verdana, sans-serif;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

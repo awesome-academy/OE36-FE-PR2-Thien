@@ -49,6 +49,7 @@ section {
 
             li {
                 @include flex-basis(calc((100% - 30px) / 4));
+                margin-bottom: 15px;
 
                 @include media-query(medium, max) {
 
@@ -69,7 +70,7 @@ section {
     .section__footer {
         text-align: right;
         padding: 15px 0 20px;
-        
+
         a:hover {
             color: $color-manatee;
         }

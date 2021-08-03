@@ -26,7 +26,7 @@
     "avatar": "Ảnh đại diện",
     "isRequired": "không được để trống",
     "isInvalid": "không đúng định dạng",
-    "rangeInvalid":"không được ít hơn",
+    "rangeInvalid": "không được ít hơn",
     "symbols": "ký tự",
     "you": "Bạn",
     "age": "tuổi",
@@ -36,5 +36,11 @@
     "backToLogin": "Quay lại đăng nhập",
     "Email already exists": "Email đã được sử dụng",
     "requestError": "Có lỗi xảy ra, vui lòng thử lại",
-    "loginNotification": "Đăng nhập thành công"
+    "loginNotification": "Đăng nhập thành công",
+    "language": "Ngôn ngữ",
+    "genre": "Thể loại",
+    "movieName": "Tên phim",
+    "show": "Hiển thị",
+    "ofNumber": "trong tổng số",
+    "perPage": "mỗi trang"
 }

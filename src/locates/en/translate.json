@@ -36,5 +36,11 @@
     "backToLogin": "Back to login",
     "Email already exists": "Email already exists",
     "requestError": "An error occurred, please try again",
-    "loginNotification": "Login Successful"
+    "loginNotification": "Login Successful",
+    "language": "Language",
+    "genre": "Genre",
+    "movieName": "Movie name",
+    "show": "Show",
+    "ofNumber": "of",
+    "perPage": "per page"
 }
