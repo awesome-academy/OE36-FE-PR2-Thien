@@ -33,35 +33,47 @@ function Paging({ length, total, current, limit }) {
   return (
     <div className="paging">
       <div className="paging__limit">
-        <span>{t("show")}</span>
-        <SelectBox
-          items={[4, 8, 16, 32]}
-          displayValue="8"
-          defaultValue={8}
-          onValueChange={handleChangeLimit}
-        />
-        <span>
-          {t("movies")} {t("perPage")}
-        </span>
+        {total > 0 && (
+          <>
+            <span>{t("show")}</span>
+            <SelectBox
+              items={[4, 8, 16, 32]}
+              displayValue="8"
+              defaultValue={8}
+              onValueChange={handleChangeLimit}
+            />
+            <span>
+              {t("movies")} {t("perPage")}
+            </span>
+          </>
+        )}
       </div>
       <div className="paging__info">
-        <span>
-          {t("show")} {limit * (current - 1) + 1} -{" "}
-          {limit * (current - 1) + Math.min(length, limit)} {t("ofNumber")}{" "}
-          {total || 0} {t("movies")}
-        </span>
+        {total > 0 ? (
+          <span>
+            {t("show")} {limit * (current - 1) + 1} -{" "}
+            {limit * (current - 1) + Math.min(length, limit)} {t("ofNumber")}{" "}
+            {total || 0} {t("movies")}
+          </span>
+        ) : (
+          <span>{t("noMatchingMovies")}</span>
+        )}
       </div>
       <div className="paging__control">
-        <Button
-          disabled={current === 1}
-          component={() => <i className="fa fa-caret-left" />}
-          onClick={handleGotoPrev}
-        />
-        <Button
-          disabled={current === maxPage}
-          component={() => <i className="fa fa-caret-right" />}
-          onClick={handleGotoNext}
-        />
+        {total > 0 && (
+          <>
+            <Button
+              disabled={current === 1}
+              component={() => <i className="fa fa-caret-left" />}
+              onClick={handleGotoPrev}
+            />
+            <Button
+              disabled={current === maxPage}
+              component={() => <i className="fa fa-caret-right" />}
+              onClick={handleGotoNext}
+            />
+          </>
+        )}
       </div>
     </div>
   );

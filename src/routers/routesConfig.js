@@ -2,6 +2,7 @@ import Cinemas from "pages/cinemas";
 import Contact from "pages/contact";
 import Home from "pages/home";
 import Login from "pages/login";
+import MovieDetails from "pages/movieDetails";
 import Movies from "pages/movies";
 import News from "pages/news";
 import Promotions from "pages/promotions";
@@ -59,6 +60,12 @@ const ROUTES_CONFIG = {
       path: "/profile",
       exact: true,
     },
+    movieDetails: {
+      path: "/movies/details/:movieId",
+      basePath: "/movies/details/",
+      exact: true,
+      component: MovieDetails,
+    }
   },
   ADMIN_ROUTES: [],
 };

@@ -14,7 +14,6 @@ import MovieItem from "components/movieItem";
 import Paging from "./components/paging";
 import { changeShowLoading } from "app/features/common";
 import { warning } from "react-toastify-redux";
-// import { changeShowDate } from "app/features/movieFilter/movieFilterSlice";
 
 Movies.propTypes = {
   location: PropTypes.object,
@@ -87,6 +86,7 @@ function Movies(props) {
           {movies.map((movie, index) => (
             <li key={index}>
               <MovieItem
+                movie={movie}
                 id={movie.id}
                 name={movie.name}
                 genre={movie.genre}

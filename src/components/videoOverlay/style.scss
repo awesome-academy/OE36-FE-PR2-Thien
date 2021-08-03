@@ -1,0 +1,7 @@
+@import "src/assets/scss/mixins";
+
+.overlay__wrap {
+    iframe {
+        @include centerer()
+    }
+}

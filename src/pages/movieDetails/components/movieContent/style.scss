@@ -1,0 +1,36 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.details-content {
+    @include flex();
+    margin-top: -300px;
+    position: relative;
+    text-shadow: 2px 2px 4px $color-black-pearl;
+    z-index: 100;
+
+    .movie__image {
+        @include media-query(large, max) {
+            display: none;
+        }
+    }
+
+    .movie__info {
+        color: $color-white;
+        display: block;
+        padding-left: 20px;
+
+        &>div {
+            color: $color-red;
+            font-size: 18px;
+            margin-top: 10px;
+
+            span {
+                color: $color-white;
+            }
+        }
+
+        h2.movie__title {
+            font-size: 45px;
+        }
+    }
+}

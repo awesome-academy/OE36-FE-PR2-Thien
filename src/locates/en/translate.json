@@ -42,5 +42,9 @@
     "movieName": "Movie name",
     "show": "Show",
     "ofNumber": "of",
-    "perPage": "per page"
+    "perPage": "per page",
+    "noMatchingMovies": "No matching movies",
+    "duration": "Duration",
+    "director": "Director",
+    "synopsis": "Synopsis"
 }
