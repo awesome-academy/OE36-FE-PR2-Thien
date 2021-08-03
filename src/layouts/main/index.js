@@ -21,7 +21,7 @@ function Main() {
             key={name}
             path={route.path}
             exact={route.exact}
-            render={() => <route.component />}
+            render={(props) => <route.component {...props}/>}
           />
         ))}
         <Route path="/" render={() => <Home />} />

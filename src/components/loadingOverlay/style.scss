@@ -2,6 +2,7 @@
 @import "src/assets/scss/variables";
 
 .loading-overlay__wrap {
+    @include prefix(transition, all 0.3s);
     @include box(100%);
     background-color: $color-overlay;
     position: fixed;

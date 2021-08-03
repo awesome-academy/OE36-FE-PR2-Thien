@@ -1,0 +1,84 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+section.movies {
+    margin-top: 30px;
+
+    .header_tabbar {
+        margin-bottom: 20px;
+
+        ul {
+            @include flex(row, flex-start, center, nowrap, 10px);
+
+            li {
+                color: $color-manatee;
+                cursor: pointer;
+                padding: 15px;
+                position: relative;
+
+                &>* {
+                    pointer-events: none;
+                }
+
+                h2 {
+                    font-size: 18px;
+                    text-transform: uppercase;
+                }
+
+                &::before {
+                    @include pseudo();
+                    @include prefix(transition, all 0.3s);
+                    background-color: $color-selective-yellow;
+                    bottom: 0;
+                    height: 5px;
+                    width: 0;
+                    opacity: 0;
+                }
+
+                &:first-child::before {
+                    right: 0;
+                }
+
+                &:last-child::before {
+                    left: 0;
+                }
+
+                &:hover,
+                &.active {
+                    color: $color-black-pearl;
+
+                    &::before {
+                        opacity: 1;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .movie__list {
+        width: 100%;
+
+        ul {
+            @include flex(row, flex-start, stretch, wrap, 15px);
+            padding-top: 30px;
+
+            li {
+                max-width: calc((100% - 45px) / 4);
+                width: 100%;
+
+                @include media-query(medium, max) {
+
+                    max-width: (calc((100% - 15px) / 2));
+                }
+
+                @include media-query(small, max) {
+                    max-width: 100%;
+                }
+
+            }
+        }
+    }
+
+}
