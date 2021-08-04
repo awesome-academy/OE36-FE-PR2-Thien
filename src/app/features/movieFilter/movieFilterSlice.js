@@ -22,7 +22,7 @@ const movieFilterSlice = createSlice({
     },
     changeLanguage: (state, action) => {
       state._page = 1;
-      state.language = action.payload;
+      state.language_like = action.payload;
     },
     changeGenre: (state, action) => {
       state._page = 1;

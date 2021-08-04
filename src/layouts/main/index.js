@@ -9,11 +9,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify-redux";
 import CustomToast from "components/customToast";
 import Home from "pages/home";
+import VideoOverlay from "components/videoOverlay";
 
 function Main() {
   const commonSetting = useSelector((state) => state.common);
   return (
     <main className="page__main">
+      {commonSetting.showVideo && (
+        <VideoOverlay embedId={commonSetting.videoEmbedId} />
+      )}
       {commonSetting.showLoading && <LoadingOverlay />}
       <Switch>
         {Object.entries(appRoutes).map(([name, route]) => (
@@ -21,7 +25,7 @@ function Main() {
             key={name}
             path={route.path}
             exact={route.exact}
-            render={(props) => <route.component {...props}/>}
+            render={(props) => <route.component {...props} />}
           />
         ))}
         <Route path="/" render={() => <Home />} />

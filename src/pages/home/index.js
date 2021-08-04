@@ -4,7 +4,11 @@ import { changeShowLoading } from "app/features/common";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { warning } from "react-toastify-redux";
-import { ERROR_NOTIFICATION } from "utils/constant";
+import {
+  CATEGORY_COMING_SOON,
+  CATEGORY_NOW_SHOWING,
+  ERROR_NOTIFICATION,
+} from "utils/constant";
 import Carousel from "./components/carousel";
 import MoviesList from "./components/movies";
 
@@ -35,8 +39,18 @@ function Home() {
   return (
     <>
       <Carousel data={carouselData} />
-      <MoviesList id="now-showing" title="nowShowing" listData={nowShowing} />
-      <MoviesList id="coming-soon" title="comingSoon" listData={comingSoon} />
+      <MoviesList
+        id="now-showing"
+        title="nowShowing"
+        listData={nowShowing}
+        category={CATEGORY_NOW_SHOWING}
+      />
+      <MoviesList
+        id="coming-soon"
+        title="comingSoon"
+        listData={comingSoon}
+        category={CATEGORY_COMING_SOON}
+      />
     </>
   );
 }

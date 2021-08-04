@@ -42,5 +42,9 @@
     "movieName": "Tên phim",
     "show": "Hiển thị",
     "ofNumber": "trong tổng số",
-    "perPage": "mỗi trang"
+    "perPage": "mỗi trang",
+    "noMatchingMovies": "Không có phim phù hợp",
+    "duration": "Thời lượng",
+    "director": "Đạo diễn",
+    "synopsis": "Tóm tắt"
 }

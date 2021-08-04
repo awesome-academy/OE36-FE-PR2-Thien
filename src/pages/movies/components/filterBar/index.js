@@ -20,7 +20,7 @@ function FilterBar() {
     try {
       apiCinema.get().then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          setCinemaData(response.data.map((cinema) => cinema.name));
+          setCinemaData(response.data);
         } else {
           dispatch(warning(response.data || ERROR_NOTIFICATION));
         }
@@ -36,44 +36,47 @@ function FilterBar() {
   const handleChangeMovieName = (movieName) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
+      console.log(movieName.event.target.value);
       dispatch(changeMovieName(movieName.event.target.value));
     }, 500);
   };
 
   const handleChangeCinema = (cinema) => {
-    dispatch(changeCinema(cinema.value));
+    dispatch(changeCinema(cinema));
   };
 
   const handleChangeLanguage = (language) => {
-    dispatch(changeLanguage(language.value));
+    dispatch(changeLanguage(language));
   };
 
   const handleChangeGenre = (genre) => {
-    dispatch(changeGenre(genre.value));
+    dispatch(changeGenre(genre));
   };
 
   return (
     <div className="filter-bar">
       <SelectBox
         items={cinemaData}
+        displayExpr="name"
+        valueExpr="name"
         placeholder={t("cinemas")}
         onValueChange={handleChangeCinema}
       />
       <SelectBox
         items={LANGUAGE_DATA}
+        displayExpr="label"
+        valueExpr="value"
         placeholder={t("language")}
-        onValueChanged={handleChangeLanguage}
+        onValueChange={handleChangeLanguage}
       />
       <SelectBox
         items={GENRE_DATA}
+        displayExpr="label"
+        valueExpr="value"
         placeholder={t("genre")}
-        onValueChanged={handleChangeGenre}
+        onValueChange={handleChangeGenre}
       />
-      <TextBox
-        onKeyUp={handleChangeMovieName}
-        placeholder={t("movieName")}
-        onValueChanged={handleChangeMovieName}
-      />
+      <TextBox onKeyUp={handleChangeMovieName} placeholder={t("movieName")} />
     </div>
   );
 }
