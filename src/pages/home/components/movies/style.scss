@@ -48,16 +48,16 @@ section {
             }
 
             li {
-                @include flex-basis(calc((100% - 30px) / 4));
+                width: calc((100% - 30px) / 4);
                 margin-bottom: 15px;
 
                 @include media-query(medium, max) {
 
-                    @include flex-basis(calc((100% - 15px) / 2));
+                    width: calc((100% - 15px) / 2);
                 }
 
                 @include media-query(small, max) {
-                    @include flex-basis(100%);
+                    width: 100%;
                 }
 
                 img {

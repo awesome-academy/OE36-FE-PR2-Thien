@@ -1,6 +1,21 @@
 @import "src/assets/scss/mixins";
 @import "src/assets/scss/variables";
 
-.movie__background {
-    position: relative;
+.movie__detail {
+    header {
+        background-color: $color-black-pearl;
+    }
+    .movie__background {
+        position: relative;
+    }
+
+    .details-content {
+        padding-bottom: 20px;
+    }
+
+    main.container {
+        position: relative;
+        padding-top: 30px;
+        padding-bottom: 50px;
+    }
 }

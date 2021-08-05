@@ -8,11 +8,13 @@ import createSagaMiddleware from "@redux-saga/core";
 import commonReducer from "./features/common";
 import { toastsReducer } from "react-toastify-redux";
 import movieFilterReducer from "./features/movieFilter/movieFilterSlice";
+import offerReducer from "./features/offer/offerSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
   account: accountReducer,
+  offer: offerReducer,
   common: commonReducer,
   toasts: toastsReducer,
   movieFilter: movieFilterReducer,

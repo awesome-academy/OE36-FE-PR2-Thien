@@ -238,3 +238,34 @@
     @include prefix(transform, translate(0, -50%));
   }
 }
+
+@mixin multi-line-ellipsis ($lines-to-show) {
+  display: block;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+}
+
+@mixin scrollbar() {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    height: 3px;
+    background-color: $color-black-pearl;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: $color-selective-yellow;
+    @include prefix(box-shadow, inset 0 0 4px $color-black-pearl);
+  }
+
+}

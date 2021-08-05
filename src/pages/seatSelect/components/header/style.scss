@@ -1,0 +1,44 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.seats-header {
+    background-color: $color-black-pearl;
+    color: $color-white;
+    width: 100%;
+
+    &__content {
+        @include flex(row, space-between, center);
+        padding: 20px 0;
+        width: 100%;
+
+        &>div {
+            @include flex-basis(30%);
+        }
+
+        .seats-header__left>div {
+            margin: 5px 0;
+
+            &.cinema-name {
+                text-transform: uppercase;
+            }
+
+            &.movie-name {
+                color: $color-manatee;
+            }
+        }
+
+        .showtime {
+            font-size: 20px;
+            text-align: center;
+
+            @include media-query(small, max) {
+                display: none;
+            }
+        }
+
+        .seats-header__right {
+            text-align: right;
+        }
+
+    }
+}

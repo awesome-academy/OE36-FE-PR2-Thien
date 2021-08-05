@@ -1,0 +1,68 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.seats-main {
+    .screen {
+        background: url($image-screen) center no-repeat;
+        background-size: contain;
+
+        height: 70px;
+        margin-top: 30px;
+        padding-top: 40px;
+        text-align: center;
+
+        span {
+            color: $color-manatee;
+            font-weight: 700;
+            position: relative;
+            text-transform: uppercase;
+            top: 30%;
+        }
+    }
+
+    .seats,
+    .note {
+        @include align-center();
+        display: block;
+        margin-top: 30px;
+        max-width: 600px;
+
+        ul {
+            @include flex(row, center, center, wrap, 10px);
+            width: 100%;
+
+            li {
+                @include flex-basis(calc((100% - 70px) / 8));
+                @include flex-grow(1);
+                height: 25px;
+                margin-bottom: 20px;
+                text-align: center;
+
+                .seat {
+                    @include align-center();
+                    cursor: pointer;
+                    display: block;
+                    background-size: cover !important;
+                    width: 25px;
+                    height: 25px;
+
+                    &--available {
+                        background: url($image-seat) no-repeat 0 0;
+                    }
+
+                    &--vip {
+                        background: url($image-seat) no-repeat 0 -145px;
+                    }
+
+                    &--occupied {
+                        background: url($image-seat) no-repeat 0 -90px;
+                    }
+
+                    &--selected {
+                        background: url($image-seat) no-repeat 0 -45px;
+                    }
+                }
+            }
+        }
+    }
+}

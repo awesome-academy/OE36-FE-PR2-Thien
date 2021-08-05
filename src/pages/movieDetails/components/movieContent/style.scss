@@ -8,19 +8,48 @@
     text-shadow: 2px 2px 4px $color-black-pearl;
     z-index: 100;
 
-    .movie__image {
+    .movie-item {
+        width: 30%;
+        height: 100%;
+
+        img {
+            min-width: 100%;
+            max-width: 100%;
+            height: 100%;
+            background: $color-white;
+            background-size: 320px 640px;
+            @include linear-gradient((0.25turn, $color-white 10%, $color-alto 50%, $color-white 90%));
+            @include prefix(animation, gradientLoading 3s linear infinite forwards);
+        }
+
         @include media-query(large, max) {
             display: none;
         }
+
+        &:hover {
+            .overlay {
+                height: 100%;
+                padding-top: 40%;
+            }
+        }
     }
 
+
+
     .movie__info {
+        box-sizing: border-box;
         color: $color-white;
         display: block;
         padding-left: 20px;
+        width: 70%;
+
+        @include media-query(large, max) {
+            width: 100%;
+            padding-left: 0;
+        }
 
         &>div {
-            color: $color-red;
+            color: $color-selective-yellow;
             font-size: 18px;
             margin-top: 10px;
 
@@ -31,6 +60,40 @@
 
         h2.movie__title {
             font-size: 45px;
+        }
+
+        .movie__synopsis {
+            h3 {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+            label {
+                cursor: pointer;
+                display: block;
+                font-size: 16px;
+                margin-top: 10px;
+                margin-left: auto;
+                width: fit-content;
+            }
+
+            p {
+                @include prefix(transition, (min-height .6s, max-height .6s));
+                @include multi-line-ellipsis(null);
+                @include scrollbar;
+                color: $color-white;
+                overflow-y: auto;
+                text-align: justify;
+                min-height: 200px;
+                max-height: 200px;
+                padding-right: 15px;
+
+                &.collapse {
+                    @include multi-line-ellipsis(2);
+                    min-height: 45px;
+                    max-height: 45px;
+                }
+            }
         }
     }
 }

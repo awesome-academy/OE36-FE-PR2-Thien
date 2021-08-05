@@ -9,7 +9,7 @@ Carousel.propTypes = {
 };
 
 function Carousel(props) {
-  let history = useHistory();
+  const history = useHistory();
 
   const handleClick = (event) => {
     history.push(event.itemData.eventPath);

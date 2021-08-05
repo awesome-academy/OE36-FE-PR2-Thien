@@ -6,7 +6,9 @@ import MovieDetails from "pages/movieDetails";
 import Movies from "pages/movies";
 import News from "pages/news";
 import Promotions from "pages/promotions";
+import TicketTypeSelect from "pages/ticketTypeSelect";
 import Signup from "pages/signup";
+import SeatSelect from "pages/seatSelect";
 
 const ROUTES_CONFIG = {
   APP_ROUTES: {
@@ -65,6 +67,16 @@ const ROUTES_CONFIG = {
       basePath: "/movies/details/",
       exact: true,
       component: MovieDetails,
+    },
+    offer:{
+      path: "/movies/offer",
+      exact: true,
+      component: TicketTypeSelect,
+    },
+    seatSelect:{
+        path: "/seats",
+        exact: true,
+        component: SeatSelect,
     }
   },
   ADMIN_ROUTES: [],
