@@ -3,7 +3,7 @@ import useClickOutside from "hooks/useClickOutside";
 import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { appRoutes } from "routers/routesConfig";
 import { BASE_URL, IMAGE_COLLECTION } from "utils/constant";
 import "./style.scss";
@@ -11,6 +11,7 @@ import "./style.scss";
 function Account() {
   const ref = useRef();
   const dispatch = useDispatch();
+  const history = useHistory();
   const account = useSelector((state) => state.account);
   const { t } = useTranslation();
   const [showDropdown, setShowDropdown] = useState(false);
@@ -19,6 +20,7 @@ function Account() {
   };
   const handleLogout = () => {
     setShowDropdown(false);
+    history.replace(appRoutes.home.path);
     dispatch(logout());
   };
   useClickOutside(ref, () => setShowDropdown(false));

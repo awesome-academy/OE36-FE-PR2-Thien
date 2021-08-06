@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import MovieContent from "./components/movieContent";
-import "./style.scss";
 import MovieEmbed from "./components/movieEmbed";
 import { useDispatch } from "react-redux";
-import { changeShowLoading } from "app/features/common";
+import { changePlayEmbedVideo, changeShowLoading } from "app/features/common";
 import { Redirect, useHistory } from "react-router-dom";
 import { appRoutes } from "routers/routesConfig";
 import apiMovie from "apis/tasks/apiMovie";
 import { ERROR_NOTIFICATION } from "utils/constant";
 import { warning } from "react-toastify-redux";
+import ShowTimeSelect from "./components/showTimeSelect";
+import { changeMovie } from "app/features/offer/offerSlice";
+import "./style.scss";
 
 MovieDetails.propTypes = {
   match: PropTypes.object,
@@ -18,10 +20,11 @@ MovieDetails.propTypes = {
 function MovieDetails({ match }) {
   const movieId = match.params.movieId;
   const history = useHistory();
-  const [movie, setMovie] = useState({});
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(changeShowLoading(true));
+    dispatch(changePlayEmbedVideo(false));
     try {
       apiMovie.get({ id: movieId }).then((response) => {
         if (
@@ -29,7 +32,7 @@ function MovieDetails({ match }) {
           response.status < 300 &&
           response.data[0]
         ) {
-          setMovie(response.data[0]);
+          dispatch(changeMovie({ movie: response.data[0] }));
         } else {
           history.push(appRoutes.movies.path);
           dispatch(warning(response.data || ERROR_NOTIFICATION));
@@ -41,17 +44,21 @@ function MovieDetails({ match }) {
       dispatch(warning(error.message || ERROR_NOTIFICATION));
     }
   }, []);
+
   return (
     <section className="movie__detail">
       {!movieId && <Redirect to={appRoutes.movies.path} />}
       <header>
         <div className="movie__background">
-          <MovieEmbed movieUrl={movie.trailerUrl} />
+          <MovieEmbed />
         </div>
         <div className="details-content container">
-          <MovieContent movie={movie} />
+          <MovieContent />
         </div>
       </header>
+      <main className="container">
+        <ShowTimeSelect />
+      </main>
     </section>
   );
 }

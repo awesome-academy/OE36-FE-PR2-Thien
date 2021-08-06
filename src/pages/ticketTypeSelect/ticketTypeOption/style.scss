@@ -1,0 +1,25 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.ticket-option {
+    @include flex(row, space-between, center, nowrap);
+    border-bottom: 1px solid $color-manatee;
+    padding: 20px;
+
+    .ticket-option__info {
+        .ticket-info__type {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+    }
+
+    .ticket-option__amount {
+        @include flex(row, space-between, center, nowrap, 10px);
+
+        span {
+            display: inline-block;
+            font-size: 18px;
+        }
+    }
+}

@@ -13,6 +13,7 @@ import { appRoutes } from "routers/routesConfig";
 function Login() {
   const { t } = useTranslation();
   const account = useSelector((state) => state.account);
+  const currentPath = useSelector((state) => state.common.currentPath);
   const dispatch = useDispatch();
   const handleSubmitForm = (event) => {
     event.preventDefault();
@@ -23,9 +24,9 @@ function Login() {
   };
   return (
     <section className="login container">
-      {account.token && <Redirect to="/" />}
+      {account.token && <Redirect to={currentPath || appRoutes.home.path} />}
       <header className="login__header">
-        <h3>{t("login")}</h3>
+        <h3>{currentPath ? t("loginToContinue") : t("login")}</h3>
       </header>
       <div className="login__form">
         <form onSubmit={handleSubmitForm}>

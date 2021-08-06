@@ -1,0 +1,60 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.schedule {
+    width: 100%;
+    overflow-x: auto;
+
+    .date-list {
+        @include scrollbar;
+        @include flex();
+        overflow-x: auto;
+        margin-bottom: 5px;
+
+        .date-list__option {
+            @include flex(column, space-between, center, nowrap, 10px);
+            background-color: $color-selective-yellow;
+            border-right: solid 0.5px $color-mirage;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 5px;
+            padding: 10px 30px;
+            position: relative;
+
+            span {
+                color: $color-black-pearl;
+                font-weight: 600;
+                text-shadow: none;
+                position: relative;
+                z-index: 2;
+                pointer-events: none;
+            }
+
+            &::before {
+                @include prefix(transition, all 0.3s);
+                @include pseudo();
+                background-color: $color-mirage;
+                left: 50%;
+                height: 100%;
+                top: 0;
+                visibility: hidden;
+                width: 0;
+                z-index: 1
+            }
+
+            &--active::before,
+            &:hover::before {
+                visibility: visible;
+                left: 0;
+                width: 100%;
+            }
+
+            &--active,
+            &:hover {
+                span {
+                    color: $color-selective-yellow;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@import "src/assets/scss/variables";
+
+.no-showtime-notification {
+    position: absolute;
+    display: block;
+    text-align: center;
+    width: 100%;
+    z-index: 0;
+}
+
+.cinema-showtime {
+    background-color: $color-white;
+    position: relative;
+    z-index: 1;
+}

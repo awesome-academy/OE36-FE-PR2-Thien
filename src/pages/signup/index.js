@@ -15,12 +15,14 @@ import { authAction } from "app/sagas/auth/authActions";
 import "./style.scss";
 import serializeForm from "utils/serializeForm";
 import { VIETNAMESE_NAME_REGEX } from "utils/constant";
+import { appRoutes } from "routers/routesConfig";
 
 function Signup() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const history = useHistory();
   const selectedImage = useRef();
+  const currentPath = useSelector((state) => state.common.currentPath);
   const account = useSelector((state) => state.account);
   const [avatar, setAvatar] = useState();
   const maxDate = new Date().setFullYear(new Date().getFullYear() - 12);
@@ -49,7 +51,7 @@ function Signup() {
 
   return (
     <section className="signup container">
-      {account.token && <Redirect to="/" />}
+      {account.token && <Redirect to={currentPath || appRoutes.home.path} />}
       <header className="signup__header">
         <h3>{t("signup")}</h3>
       </header>

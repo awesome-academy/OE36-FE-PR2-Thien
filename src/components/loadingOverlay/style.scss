@@ -3,11 +3,20 @@
 
 .overlay__wrap {
     @include prefix(transition, all 0.3s);
+    @include prefix(animation, fadeOut 1s ease-in-out 1.5s both);
     @include box(100%);
     background-color: $color-overlay;
     position: fixed;
-    top: 0;
-    z-index: 50;
+    top: 100px;
+    z-index: 200;
+
+    &.video__wrap{
+        @include prefix(animation, fadeOut 0.3s ease-in-out 0.4s both);
+    }
+
+    &.visible {
+        @include prefix(animation, fadeIn 0.1s);
+    }
 
     .loading-overlay {
         @include centerer();
@@ -35,19 +44,19 @@
         }
 
         &::before {
-            @include prefix(animation, loadingAnimationExpand 4s infinite);
+            @include prefix(animation, loadingAnimationExpand 2s infinite);
             margin-bottom: 30px;
         }
 
         &::after {
-            @include prefix(animation, loadingAnimationCollapse 4s infinite);
+            @include prefix(animation, loadingAnimationCollapse 2s infinite);
         }
     }
 }
 
 @include keyframes(loadingAnimationExpand) {
     0% {
-        width: 50%;
+        width: 60%;
     }
 
     50% {
@@ -55,7 +64,7 @@
     }
 
     100% {
-        width: 50%;
+        width: 60%;
     }
 }
 
@@ -65,10 +74,31 @@
     }
 
     50% {
-        width: 50%;
+        width: 60%;
     }
 
     100% {
         width: 90%;
+    }
+}
+
+@include keyframes (fadeIn) {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@include keyframes (fadeOut) {
+    0% {
+        opacity: 1.0;
+    }
+
+    100% {
+        opacity: 0.0;
+        z-index: -1;
     }
 }

@@ -1,0 +1,53 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+h5.cinema__name {
+    font-size: 25px;
+    margin-bottom: 30px;
+    position: relative;
+    width: fit-content;
+
+    &::before {
+        @include pseudo();
+        bottom: -10px;
+        height: 5px;
+        width: 100%;
+        background-color: $color-selective-yellow;
+    }
+}
+
+ul.cinema__showtime-list {
+    @include flex(row, flex-start, center, wrap, 15px);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: solid 1px $color-mirage;
+
+    .dx-button {
+        position: relative;
+
+        &::before {
+            @include prefix(transition, all 0.3s);
+            @include pseudo();
+            background-color: $color-selective-yellow;
+            left: 50%;
+            height: 100%;
+            top: 0;
+            width: 0;
+            z-index: 0
+        }
+
+        &:hover::before {
+            left: 0;
+            width: 100%;
+        }
+
+        .dx-button-content {
+            position: relative;
+            font-weight: 700 !important;
+            padding: 15px 25px;
+            z-index: 1;
+
+        }
+    }
+
+}

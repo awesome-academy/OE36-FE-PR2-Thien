@@ -46,6 +46,10 @@
                 &:hover {
                     @include prefix(transform, rotate(360deg));
                 }
+
+                &.pause {
+                    background-image: url($button-pause);
+                }
             }
 
             .booking {
@@ -102,7 +106,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            max-width: 150px;
 
             @include media-query(large, max) {
                 font-size: 14px;
