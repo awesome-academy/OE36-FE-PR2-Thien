@@ -10,12 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { warning } from "react-toastify-redux";
 import { appRoutes } from "routers/routesConfig";
-import { ERROR_NOTIFICATION } from "utils/constant";
 import formatMoney from "utils/formatMoney";
 import validateAmount from "utils/validateAmount";
 import TicketTypeOption from "./ticketTypeOption";
 import "./style.scss";
 import { Button } from "devextreme-react";
+import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 
 function TicketTypeSelect() {
   const offer = useSelector((state) => state.offer);

@@ -1,5 +1,6 @@
 import { all, fork } from "redux-saga/effects";
 import * as authSaga from "./auth/authSagas";
+import * as userSaga from "./users/userSagas";
 
 export default function* rootSaga() {
   yield all([
@@ -7,5 +8,9 @@ export default function* rootSaga() {
     fork(authSaga.watchLogin),
     fork(authSaga.watchSuccess),
     fork(authSaga.watchFail),
+
+    fork(userSaga.watchAddUser),
+    fork(userSaga.watchUpdateUser),
+    fork(userSaga.watchRemoveUser),
   ]);
 }

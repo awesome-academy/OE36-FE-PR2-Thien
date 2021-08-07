@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import useClickOutside from "hooks/useClickOutside";
 import { useDispatch, useSelector } from "react-redux";
 import { changeShowVideo } from "app/features/common";
-import { YOUTUBE_EMBED_URL } from "utils/constant";
+import { YOUTUBE_EMBED_URL } from "constants/common";
 import "./style.scss";
 
 function VideoOverlay() {

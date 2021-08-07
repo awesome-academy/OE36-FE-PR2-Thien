@@ -1,11 +1,14 @@
+/* eslint-disable no-debugger */
 import { logout } from "app/features/account/accountSlice";
+import { IMAGE_COLLECTION } from "constants/collections";
+import { BASE_URL } from "constants/common";
 import useClickOutside from "hooks/useClickOutside";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { appRoutes } from "routers/routesConfig";
-import { BASE_URL, IMAGE_COLLECTION } from "utils/constant";
+import { adminRoutes, appRoutes } from "routers/routesConfig";
+import checkBaseName from "utils/checkBaseName";
 import "./style.scss";
 
 function Account() {
@@ -13,17 +16,26 @@ function Account() {
   const dispatch = useDispatch();
   const history = useHistory();
   const account = useSelector((state) => state.account);
+
+  const [routes, setRoutes] = useState(appRoutes);
   const { t } = useTranslation();
   const [showDropdown, setShowDropdown] = useState(false);
   const showDropdownMenu = () => {
     setShowDropdown(!showDropdown);
   };
+
   const handleLogout = () => {
     setShowDropdown(false);
-    history.replace(appRoutes.home.path);
+    history.replace(routes.home.path);
     dispatch(logout());
   };
   useClickOutside(ref, () => setShowDropdown(false));
+  useEffect(() => {
+    const newRoutes = checkBaseName(history.location.pathname)
+      ? adminRoutes
+      : appRoutes;
+    setRoutes(newRoutes);
+  }, [history.location.pathname]);
   return (
     <div className="setting__account">
       <div className="account">
@@ -38,7 +50,7 @@ function Account() {
           {account.token ? (
             <span>{account.name}</span>
           ) : (
-            <Link to={appRoutes.login.path}>
+            <Link to={routes.login.path}>
               <span>{t("login")}</span>
             </Link>
           )}
@@ -53,12 +65,12 @@ function Account() {
             <nav>
               <ul>
                 <li className="menu__item">
-                  <Link to={appRoutes.profile.path}>
+                  <Link to={routes.profile.path}>
                     <span>{t("profile")}</span>
                   </Link>
                 </li>
                 <li className="menu__item" onClick={handleLogout}>
-                  <Link to={appRoutes.home.path}>
+                  <Link to={routes.home.path}>
                     <span>{t("logout")}</span>
                   </Link>
                 </li>

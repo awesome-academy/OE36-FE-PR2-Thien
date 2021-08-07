@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  CATEGORY_COMING_SOON,
-  CATEGORY_NOW_SHOWING,
-  ERROR_NOTIFICATION,
-} from "utils/constant";
 import PropTypes from "prop-types";
 import "./style.scss";
 import FilterBar from "./components/filterBar";
@@ -14,6 +9,8 @@ import MovieItem from "components/movieItem";
 import Paging from "./components/paging";
 import { changeShowLoading } from "app/features/common";
 import { warning } from "react-toastify-redux";
+import { CATEGORY_COMING_SOON, CATEGORY_NOW_SHOWING } from "constants/categories";
+import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 
 Movies.propTypes = {
   location: PropTypes.object,

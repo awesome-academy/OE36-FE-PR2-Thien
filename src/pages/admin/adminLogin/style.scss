@@ -1,0 +1,17 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.admin-login {
+    .form__action {
+        .dx-button {
+            @include align-center;
+            min-width: 250px;
+
+            &:hover {
+               span.dx-button-text {
+                color: $color-alto !important;
+               }
+            }
+        }
+    }
+}

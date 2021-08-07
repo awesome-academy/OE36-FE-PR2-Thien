@@ -1,5 +1,5 @@
-import { BANNER_COLLECTION } from "utils/constant";
 import { ApiCore } from "apis/utils/core";
+import { BANNER_COLLECTION } from "constants/collections";
 
 class ApiBanner extends ApiCore {
   constructor() {

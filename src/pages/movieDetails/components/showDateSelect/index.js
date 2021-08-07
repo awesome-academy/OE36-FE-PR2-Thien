@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
-import { DAY_STRING, MONTH_STRING } from "utils/constant";
 import { isEqual } from "utils/compareDate";
 import { useDispatch, useSelector } from "react-redux";
 import { changeShowDate } from "app/features/offer/offerSlice";
 import "./style.scss";
 import { changeShowLoading } from "app/features/common";
+import { DAY_STRING, MONTH_STRING } from "constants/stringMap";
 
 function ShowDateSelect() {
   const dispatch = useDispatch();

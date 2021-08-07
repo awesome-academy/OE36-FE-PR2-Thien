@@ -13,8 +13,8 @@ export class ApiCore {
       };
     }
     if (options.put) {
-      this.put = (model) => {
-        return apiProvider.put(options.collection, model);
+      this.put = (id, model) => {
+        return apiProvider.put(options.collection, id, model);
       };
     }
     if (options.remove) {

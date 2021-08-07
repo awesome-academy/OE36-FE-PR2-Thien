@@ -1,0 +1,7 @@
+@import "src/assets/scss/mixins";
+
+.admin-main {
+    position: relative;
+    top: 68px;
+    height: calc(100% - 70px);
+}

@@ -9,6 +9,7 @@
     "loginToContinue": "Login to continue",
     "signup": "Signup",
     "logout": "Logout",
+    "Don't have an Account":"Don't have an Account ?",
     "profile": "Profile",
     "nowShowing": "Now showing",
     "comingSoon": "Coming soon",
@@ -45,7 +46,7 @@
     "show": "Show",
     "ofNumber": "of",
     "perPage": "per page",
-    "noMatchingMovies": "No matching movies",
+    "noMatching": "No matching content",
     "duration": "Duration",
     "director": "Director",
     "synopsis": "Synopsis",
@@ -58,5 +59,6 @@
     "outOfRangeMessage": "Number of seats out of range",
     "totalPrice": "Total price",
     "proceed": "Proceed",
-    "screen": "Screen"
+    "screen": "Screen",
+    "users": "users"
 }

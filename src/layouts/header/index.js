@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LanguageSwitcher from "./components/languageSwitcher";
-import Account from "./components/account";
+import LanguageSwitcher from "../../components/languageSwitcher";
+import Account from "../../components/account";
 import NavBar from "./components/navbar";
 import logo from "assets/images/logo.png";
 import "./style.scss";

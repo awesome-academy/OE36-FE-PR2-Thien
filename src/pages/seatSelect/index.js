@@ -12,7 +12,7 @@ import {
   STATUS_AVAILABLE,
   STATUS_OCCUPIED,
   STATUS_SELECTED,
-} from "utils/constant";
+} from "constants/seatsPageConfig";
 import Footer from "./components/footer";
 
 function SeatSelect() {

@@ -1,0 +1,6 @@
+@import "src/assets/scss/mixins";
+
+.header-content {
+    @include flex(row, space-between, center, nowrap);
+    padding: 5px 20px;
+}

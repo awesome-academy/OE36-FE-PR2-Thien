@@ -9,6 +9,9 @@ import Promotions from "pages/promotions";
 import TicketTypeSelect from "pages/ticketTypeSelect";
 import Signup from "pages/signup";
 import SeatSelect from "pages/seatSelect";
+import Dashboard from "pages/admin/dashboard";
+import AdminLogin from "pages/admin/adminLogin";
+import UsersManager from "pages/admin/usersManager";
 
 const ROUTES_CONFIG = {
   APP_ROUTES: {
@@ -68,18 +71,58 @@ const ROUTES_CONFIG = {
       exact: true,
       component: MovieDetails,
     },
-    offer:{
+    offer: {
       path: "/movies/offer",
       exact: true,
       component: TicketTypeSelect,
     },
-    seatSelect:{
-        path: "/seats",
-        exact: true,
-        component: SeatSelect,
-    }
+    seatSelect: {
+      path: "/seats",
+      exact: true,
+      component: SeatSelect,
+    },
   },
-  ADMIN_ROUTES: [],
+  ADMIN_ROUTES: {
+    dashboard: {
+      path: "/admin/dashboard",
+      exact: true,
+      navbar: true,
+      component: Dashboard,
+    },
+    users: {
+      path: "/admin/users",
+      exact: true,
+      navbar: true,
+      component: UsersManager,
+    },
+    movies: {
+      path: "/admin/movies",
+      exact: true,
+      navbar: true,
+      component: Dashboard,
+    },
+    cinemas: {
+      path: "/admin/cinemas",
+      exact: true,
+      navbar: true,
+      component: Dashboard,
+    },
+    home: {
+      path: "/admin",
+      exact: true,
+      component: Dashboard,
+    },
+
+    profile: {
+      path: "/admin/profile",
+      exact: true,
+    },
+    login: {
+      path: "/admin/login",
+      exact: true,
+      component: AdminLogin,
+    },
+  },
 };
 
 export const appRoutes = ROUTES_CONFIG.APP_ROUTES;

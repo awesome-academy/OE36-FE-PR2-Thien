@@ -1,10 +1,11 @@
 import { changeCurrentPath } from "app/features/common";
-import Admin from "pages/admin";
+import AdminHeader from "layouts/admin/adminHeader";
+import AdminMain from "layouts/admin/adminMain";
 import SeatSelect from "pages/seatSelect";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch, useLocation } from "react-router-dom";
-import { appRoutes } from "routers/routesConfig";
+import { adminRoutes, appRoutes } from "routers/routesConfig";
 import Footer from "./layouts/footer";
 import Header from "./layouts/header";
 import Main from "./layouts/main";
@@ -22,8 +23,25 @@ function App() {
   }, [location]);
   return (
     <Switch>
-      <Route path="/admin" exact={true} render={() => <Admin />} />
-      <Route path="/seats" exact={true} render={() => <SeatSelect />} />
+      {Object.entries(adminRoutes).map(([name, route]) => (
+        <Route
+          key={name}
+          path={route.path}
+          exact={route.exact}
+          render={() => (
+            <>
+              <AdminHeader />
+              <AdminMain />
+            </>
+          )}
+        />
+      ))}
+
+      <Route
+        path={appRoutes.seatSelect.path}
+        exact={false}
+        render={() => <SeatSelect />}
+      />
       <Route
         render={() => (
           <>
