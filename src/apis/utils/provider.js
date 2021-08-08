@@ -14,6 +14,15 @@ const get = (collection, filters = {}) => {
     .catch(handleError);
 };
 
+const getById = (collection, id) => {
+  return axios
+    .get(`${BASE_URL}/${collection}/${id}`, {
+      headers: getAuthHeader(),
+    })
+    .then(handleResponse)
+    .catch(handleError);
+};
+
 const post = (collection, model) => {
   return axios
     .post(`${BASE_URL}/${collection}`, model, { headers: getAuthHeader() })
@@ -51,4 +60,4 @@ const upload = (collection, files) => {
     .catch(handleError);
 };
 
-export const apiProvider = { get, post, put, remove, upload };
+export const apiProvider = { get, getById, post, put, remove, upload };

@@ -37,7 +37,7 @@ function TicketTypeSelect() {
         })
       );
     } else {
-      dispatch(warning(t("outOfRangeMessage")));
+      dispatch(warning(t("outOfRangeMessage")+seatsAvailable));
     }
   };
 
@@ -64,13 +64,9 @@ function TicketTypeSelect() {
   useEffect(() => {
     dispatch(changeShowLoading(true));
     try {
-      apiCinema.get({ id: offer.cinemaId }).then((response) => {
-        if (
-          response.status >= 200 &&
-          response.status < 300 &&
-          response.data[0]
-        ) {
-          setCinemaData(response.data[0]);
+      apiCinema.getById(offer.cinemaId).then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+          setCinemaData(response.data);
         } else {
           history.push(appRoutes.movies.path);
           dispatch(warning(response.data || ERROR_NOTIFICATION));

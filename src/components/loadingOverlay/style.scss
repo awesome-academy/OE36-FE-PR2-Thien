@@ -7,7 +7,7 @@
     @include box(100%);
     background-color: $color-overlay;
     position: fixed;
-    top: 100px;
+    top: 0;
     z-index: 200;
 
     &.video__wrap{

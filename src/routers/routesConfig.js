@@ -13,6 +13,7 @@ import MoviesManager from "pages/admin/moviesManager/index.js";
 import Dashboard from "pages/admin/dashboard";
 import AdminLogin from "pages/admin/adminLogin";
 import UsersManager from "pages/admin/usersManager";
+import TicketManager from "pages/admin/ticketManager";
 
 const ROUTES_CONFIG = {
   APP_ROUTES: {
@@ -106,7 +107,7 @@ const ROUTES_CONFIG = {
       path: "/admin/cinemas",
       exact: true,
       navbar: true,
-      component: Dashboard,
+      component: TicketManager,
     },
     home: {
       path: "/admin",

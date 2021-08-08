@@ -28,3 +28,15 @@ export default function generateSeats(occupied = [3, 5, 9]) {
   }
   return seatMap;
 }
+
+export function generateSeatsData() {
+  let seats = [];
+  for (let index = 0; index < SEAT_NUMBER; index++) {
+    let seat = { id: index };
+    const seatRow = Math.floor(index / ROW_LENGTH);
+    const seatPos = index - ROW_LENGTH * seatRow;
+    seat.name = ROW_NAME[seatRow] + seatPos;
+    seats.push(seat);
+  }
+  return seats;
+}

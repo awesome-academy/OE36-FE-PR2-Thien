@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, SelectBox } from "devextreme-react";
 import { useTranslation } from "react-i18next";
+import "./style.scss";
 
 Paging.propTypes = {
   content: PropTypes.string,
@@ -34,8 +35,8 @@ function Paging({ content, length, total, filters, onFiltersChange }) {
             <span>{t("show")}</span>
             <SelectBox
               items={[4, 8, 16, 32]}
-              displayValue="8"
-              defaultValue={8}
+              displayValue={limit.toString()}
+              defaultValue={limit}
               onValueChange={handleChangeLimit}
             />
             <span>

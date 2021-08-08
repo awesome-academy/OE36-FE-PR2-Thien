@@ -46,7 +46,13 @@ function MovieItem({ movie }) {
         <h4 className="movie__name" title={movie.name}>
           {movie.name}
         </h4>
-        <p className="movie__genre">{movie.genre}</p>
+        <p className="movie__genre">
+          {movie.genre.map((genreItem, index) => (
+            <span key={index}>{`${genreItem}${
+              index < movie.genre.length - 1 ? ", " : ""
+            }`}</span>
+          ))}
+        </p>
         <p className="movie__duration">
           <i className="fa fa-clock-o" />
           <span>{` ${movie.duration} ${t("minute")}`}</span>

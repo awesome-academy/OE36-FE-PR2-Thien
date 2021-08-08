@@ -6,6 +6,7 @@ class ApiMovie extends ApiCore {
     super({
       collection: MOVIES_COLLECTION,
       get: true,
+      getById: true,
       post: true,
       put: true,
       remove: true,
