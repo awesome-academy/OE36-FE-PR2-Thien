@@ -1,4 +1,4 @@
-import apiUser from "apis/tasks/apiUser";
+import apiMovie from "apis/tasks/apiMovie";
 import { changeShowLoading } from "app/features/common";
 import {
   ADD_SUCCESS_NOTIFICATION,
@@ -6,33 +6,33 @@ import {
   REMOVE_SUCCESS_NOTIFICATION,
   UPDATE_SUCCESS_NOTIFICATION,
 } from "constants/notificationMessage";
-import { info, warning, error } from "react-toastify-redux";
+import { error, info, warning } from "react-toastify-redux";
 import { call, put, takeLatest } from "redux-saga/effects";
-import { userAction } from "./userActions";
+import { movieActions } from "./movieActions";
 
-export function* addUser({ payload }) {
+export function* addMovie({ payload }) {
   yield put(changeShowLoading(true));
   try {
-    const response = yield call(() => apiUser.post(payload));
+    const response = yield call(apiMovie.post(payload));
     if (response.status === 201) {
       yield put(info(ADD_SUCCESS_NOTIFICATION));
     } else {
       yield put(warning(response.payload?.data || ERROR_NOTIFICATION));
     }
-  } catch (e) {
-    yield put(error(ERROR_NOTIFICATION));
+  } catch (err) {
+    put(error(ERROR_NOTIFICATION));
   }
   yield put(changeShowLoading(false));
 }
 
-export function* watchAddUser() {
-  yield takeLatest(userAction.ADD_USER, addUser);
+export function* watchAddMovie() {
+  yield takeLatest(movieActions.ADD_MOVIE, addMovie);
 }
 
-export function* updateUser({ payload }) {
+export function* updateMovie({ payload }) {
   yield put(changeShowLoading(true));
   try {
-    const response = yield call(() => apiUser.put(payload.id, payload));
+    const response = yield call(() => apiMovie.put(payload.id, payload));
     if (response.status >= 200 && response.status < 300) {
       yield put(info(UPDATE_SUCCESS_NOTIFICATION));
     } else {
@@ -44,14 +44,14 @@ export function* updateUser({ payload }) {
   yield put(changeShowLoading(false));
 }
 
-export function* watchUpdateUser() {
-  yield takeLatest(userAction.UPDATE_USER, updateUser);
+export function* watchUpdateMovie() {
+  yield takeLatest(movieActions.UPDATE_MOVIE, updateMovie);
 }
 
-export function* removeUser({ payload }) {
+export function* removeMovie({ payload }) {
   yield put(changeShowLoading(true));
   try {
-    const response = yield call(() => apiUser.remove(payload));
+    const response = yield call(() => apiMovie.remove(payload));
     if (response.status >= 200 && response.status < 300) {
       yield put(info(REMOVE_SUCCESS_NOTIFICATION));
     } else {
@@ -63,6 +63,6 @@ export function* removeUser({ payload }) {
   yield put(changeShowLoading(false));
 }
 
-export function* watchRemoveUser() {
-  yield takeLatest(userAction.REMOVE_USER, removeUser);
+export function* watchRemoveMovie() {
+  yield takeLatest(movieActions.REMOVE_MOVIE, removeMovie);
 }

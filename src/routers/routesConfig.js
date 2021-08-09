@@ -9,6 +9,7 @@ import Promotions from "pages/promotions";
 import TicketTypeSelect from "pages/ticketTypeSelect";
 import Signup from "pages/signup";
 import SeatSelect from "pages/seatSelect";
+import MoviesManager from "pages/admin/moviesManager/index.js";
 import Dashboard from "pages/admin/dashboard";
 import AdminLogin from "pages/admin/adminLogin";
 import UsersManager from "pages/admin/usersManager";
@@ -99,7 +100,7 @@ const ROUTES_CONFIG = {
       path: "/admin/movies",
       exact: true,
       navbar: true,
-      component: Dashboard,
+      component: MoviesManager,
     },
     cinemas: {
       path: "/admin/cinemas",
