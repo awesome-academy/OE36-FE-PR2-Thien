@@ -1,6 +1,5 @@
-import { MOVIES_COLLECTION } from "utils/constant";
-
 import { ApiCore } from "apis/utils/core";
+import { MOVIES_COLLECTION } from "constants/collections";
 
 class ApiMovie extends ApiCore {
   constructor() {

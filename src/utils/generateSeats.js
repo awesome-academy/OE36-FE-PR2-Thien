@@ -1,12 +1,12 @@
+import { ROW_NAME } from "constants/stringMap";
 import {
   ROW_LENGTH,
-  ROW_NAME,
   SEAT_NUMBER,
   STATUS_AVAILABLE,
   STATUS_OCCUPIED,
   TYPE_REGULAR,
   TYPE_VIP,
-} from "./constant";
+} from "../constants/seatsPageConfig";
 
 export default function generateSeats(occupied = [3, 5, 9]) {
   let seatMap = [];

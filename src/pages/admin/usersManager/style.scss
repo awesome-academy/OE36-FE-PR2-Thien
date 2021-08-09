@@ -1,0 +1,23 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.users {
+    box-sizing: border-box;
+    left: 220px;
+    padding: 30px 15px 0;
+    position: absolute;
+    width: calc(100% - 220px);
+    height: 100%;
+
+    &__header {
+        height: 45px;
+    }
+
+    &__main {
+        min-height: calc(100% - 145px);
+    }
+
+    &__footer {
+        margin-bottom: 30px;
+    }
+}

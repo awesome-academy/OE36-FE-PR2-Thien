@@ -56,7 +56,7 @@ function Paging({ length, total, current, limit }) {
             {total || 0} {t("movies")}
           </span>
         ) : (
-          <span>{t("noMatchingMovies")}</span>
+          <span>{t("noMatching")}</span>
         )}
       </div>
       <div className="paging__control">

@@ -1,5 +1,5 @@
 import { ApiCore } from "apis/utils/core";
-import { CINEMAS_COLLECTION } from "utils/constant";
+import { CINEMAS_COLLECTION } from "constants/collections";
 
 class ApiCinema extends ApiCore {
   constructor() {

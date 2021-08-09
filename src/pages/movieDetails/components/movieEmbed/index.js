@@ -1,6 +1,6 @@
 import React from "react";
 import getEmbedId from "utils/embedId";
-import { EMBED_VIDEO_PARAM, YOUTUBE_EMBED_URL } from "utils/constant";
+import { EMBED_VIDEO_PARAM, YOUTUBE_EMBED_URL } from "constants/common";
 import { useSelector } from "react-redux";
 import "./style.scss";
 

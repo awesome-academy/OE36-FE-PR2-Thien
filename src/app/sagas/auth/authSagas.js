@@ -2,9 +2,14 @@ import apiAuth from "apis/tasks/apiAuth";
 import apiUploadImage from "apis/tasks/apiUploadImage";
 import { login } from "app/features/account/accountSlice";
 import { changeShowLoading } from "app/features/common";
+import { ACCOUNT_STATUS_BLOCKED, ADMIN_ROLE } from "constants/common";
+import {
+  ERROR_NOTIFICATION,
+  LOGIN_NOTIFICATION,
+  PERMISSION_ERROR_NOTIFICATION,
+} from "constants/notificationMessage";
 import { warning } from "react-toastify-redux";
 import { call, put, takeLatest } from "redux-saga/effects";
-import { ERROR_NOTIFICATION, LOGIN_NOTIFICATION } from "utils/constant";
 import { authAction } from "./authActions";
 
 export function* doLogin({ payload }) {
@@ -12,12 +17,28 @@ export function* doLogin({ payload }) {
   let response;
   try {
     response = yield call(() => apiAuth.login(payload));
-    if (response.status >= 200 && response.status < 300) {
+    if (
+      response.status >= 200 &&
+      response.status < 300 &&
+      response.data.user.status !== ACCOUNT_STATUS_BLOCKED &&
+      (response.data.user.role === payload.role ||
+        response.data.user.role === ADMIN_ROLE)
+    ) {
       yield put({
         type: authAction.DO_SUCCEEDED,
         payload: {
           ...response.data.user,
           token: response.data.accessToken,
+        },
+      });
+    } else if (
+      response.data.user.role !== payload.role ||
+      response.data.user.status === ACCOUNT_STATUS_BLOCKED
+    ) {
+      yield put({
+        type: authAction.DO_FAILED,
+        payload: {
+          data: PERMISSION_ERROR_NOTIFICATION,
         },
       });
     } else {
@@ -48,7 +69,10 @@ export function* doSignup({ payload }) {
     }
     if (uploadResponse?.status >= 200 && uploadResponse?.status < 300) {
       const response = yield call(() =>
-        apiAuth.signup({ ...payload, avatar: uploadResponse.data.shift() })
+        apiAuth.signup({
+          ...payload,
+          avatar: uploadResponse.data.shift(),
+        })
       );
 
       if (response.status >= 200 && response.status < 300) {
@@ -91,6 +115,7 @@ export function* watchSuccess() {
 }
 
 export function* doFailed(action) {
+  console.log(action.payload?.data);
   yield put(warning(action.payload?.data || ERROR_NOTIFICATION));
 }
 

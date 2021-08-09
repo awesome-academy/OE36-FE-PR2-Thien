@@ -9,6 +9,7 @@
     "loginToContinue": "Đăng nhập để tiếp tục",
     "signup": "Đăng ký",
     "logout": "Đăng xuất",
+    "Don't have an Account":"Bạn chưa có tài khoản ?",
     "profile": "Thông tin tài khoản",
     "nowShowing": "Phim đang chiếu",
     "comingSoon": "Phim sắp chiếu",
@@ -45,7 +46,7 @@
     "show": "Hiển thị",
     "ofNumber": "trong tổng số",
     "perPage": "mỗi trang",
-    "noMatchingMovies": "Không có phim phù hợp",
+    "noMatching": "Không có nội dung phù hợp",
     "duration": "Thời lượng",
     "director": "Đạo diễn",
     "synopsis": "Tóm tắt",
@@ -58,5 +59,6 @@
     "outOfRangeMessage": "Số lượng ghế ngoài phạm vi cho phép",
     "totalPrice": "Tổng tiền",
     "proceed": "Tiếp tục", 
-    "screen": "Màn hình"
+    "screen": "Màn hình",
+    "users": "người dùng"
 }

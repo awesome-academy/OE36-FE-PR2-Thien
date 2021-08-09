@@ -5,12 +5,13 @@ import {
   changeLanguage,
   changeMovieName,
 } from "app/features/movieFilter/movieFilterSlice";
+import { GENRE_DATA, LANGUAGE_DATA } from "constants/common";
+import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 import { SelectBox, TextBox } from "devextreme-react";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { warning } from "react-toastify-redux";
-import { ERROR_NOTIFICATION, GENRE_DATA, LANGUAGE_DATA } from "utils/constant";
 import "./style.scss";
 
 function FilterBar() {
@@ -36,7 +37,6 @@ function FilterBar() {
   const handleChangeMovieName = (movieName) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      console.log(movieName.event.target.value);
       dispatch(changeMovieName(movieName.event.target.value));
     }, 500);
   };

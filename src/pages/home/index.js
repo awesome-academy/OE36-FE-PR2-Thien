@@ -1,14 +1,11 @@
 import apiBanner from "apis/tasks/apiBanner";
 import apiMovie from "apis/tasks/apiMovie";
 import { changeShowLoading } from "app/features/common";
+import { CATEGORY_COMING_SOON, CATEGORY_NOW_SHOWING } from "constants/categories";
+import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { warning } from "react-toastify-redux";
-import {
-  CATEGORY_COMING_SOON,
-  CATEGORY_NOW_SHOWING,
-  ERROR_NOTIFICATION,
-} from "utils/constant";
 import Carousel from "./components/carousel";
 import MoviesList from "./components/movies";
 

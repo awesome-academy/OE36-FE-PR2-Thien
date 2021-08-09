@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "app/sagas/auth/authActions";
 import "./style.scss";
 import serializeForm from "utils/serializeForm";
-import { VIETNAMESE_NAME_REGEX } from "utils/constant";
+import { PHONE_NUMBER_REGEX, VIETNAMESE_NAME_REGEX } from "constants/regex";
 import { appRoutes } from "routers/routesConfig";
 
 function Signup() {
@@ -147,7 +147,7 @@ function Signup() {
                   <Validator>
                     <PatternRule
                       message={`${t("phone")} ${t("isInvalid")}`}
-                      pattern={/((09|03|07|08|05)+([0-9]{8})\b)/g}
+                      pattern={PHONE_NUMBER_REGEX}
                     />
                   </Validator>
                 </TextBox>

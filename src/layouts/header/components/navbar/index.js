@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { appRoutes } from "routers/routesConfig";
-import Account from "../account";
+import Account from "components/account";
 import "./style.scss";
 
 function NavBar() {

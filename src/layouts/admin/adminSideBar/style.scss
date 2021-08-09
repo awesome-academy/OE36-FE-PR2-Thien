@@ -1,0 +1,39 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+aside.admin-sidebar {
+    background-color: $color-mirage;
+    color: $color-manatee;
+    height: calc(100vh - 68px);
+    top: 68px;
+    left: 0;
+    position: fixed;
+    text-transform: capitalize;
+    width: 220px;
+
+    ul {
+        @include flex(column, flex-start, center, 5px)
+    }
+
+    .navbar-menu__item {
+        border-bottom: 1px solid $color-citrine;
+        width: 100%;
+
+        a {
+            box-sizing: border-box;
+            display: block;
+            height: 100%;
+            padding: 20px 20px;
+            width: 100%;
+
+            i {
+                margin-right: 20px;
+            }
+
+            &.active {
+                background-color: $color-selective-yellow;
+                color: $color-black-pearl;
+            }
+        }
+    }
+}

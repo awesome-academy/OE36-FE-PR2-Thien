@@ -7,11 +7,11 @@ import { changePlayEmbedVideo, changeShowLoading } from "app/features/common";
 import { Redirect, useHistory } from "react-router-dom";
 import { appRoutes } from "routers/routesConfig";
 import apiMovie from "apis/tasks/apiMovie";
-import { ERROR_NOTIFICATION } from "utils/constant";
 import { warning } from "react-toastify-redux";
 import ShowTimeSelect from "./components/showTimeSelect";
 import { changeMovie } from "app/features/offer/offerSlice";
 import "./style.scss";
+import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 
 MovieDetails.propTypes = {
   match: PropTypes.object,
