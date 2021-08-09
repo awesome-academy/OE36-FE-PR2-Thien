@@ -125,7 +125,7 @@ function UsersManager() {
           total={total}
           filters={filters}
           length={users.length}
-          onFiltersChanged={handleFilterChange}
+          onFiltersChange={handleFilterChange}
           content="users"
         />
       </footer>

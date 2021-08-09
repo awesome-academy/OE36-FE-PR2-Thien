@@ -1,6 +1,7 @@
 import { all, fork } from "redux-saga/effects";
 import * as authSaga from "./auth/authSagas";
 import * as userSaga from "./users/userSagas";
+import * as movieSaga from "./movies/movieSagas";
 
 export default function* rootSaga() {
   yield all([
@@ -12,5 +13,9 @@ export default function* rootSaga() {
     fork(userSaga.watchAddUser),
     fork(userSaga.watchUpdateUser),
     fork(userSaga.watchRemoveUser),
+
+    fork(movieSaga.watchAddMovie),
+    fork(movieSaga.watchUpdateMovie),
+    fork(movieSaga.watchRemoveMovie)
   ]);
 }

@@ -8,23 +8,23 @@ Paging.propTypes = {
   length: PropTypes.number,
   total: PropTypes.number,
   filters: PropTypes.object,
-  onFiltersChanged: PropTypes.func,
+  onFiltersChange: PropTypes.func,
 };
 
-function Paging({ content, length, total, filters, onFiltersChanged }) {
+function Paging({ content, length, total, filters, onFiltersChange }) {
   const maxPage = Math.ceil(total / filters._limit);
   const limit = Number(filters._limit);
   const page = Number(filters._page);
   const { t } = useTranslation();
   const handleChangeLimit = (limit) => {
-    onFiltersChanged({ ...filters, _limit: limit });
+    onFiltersChange({ ...filters, _limit: limit });
   };
   const handleGotoPrev = () => {
-    onFiltersChanged({ ...filters, _page: page - 1 });
+    onFiltersChange({ ...filters, _page: page - 1 });
   };
 
   const handleGotoNext = () => {
-    onFiltersChanged({ ...filters, _page: page + 1 });
+    onFiltersChange({ ...filters, _page: page + 1 });
   };
   return (
     <div className="paging">
