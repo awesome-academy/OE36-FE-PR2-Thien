@@ -1,0 +1,16 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.movie-option {
+    @include flex($gap: 10px);
+
+    .movie-option__image {
+        width: 80px;
+        height: 100px;
+        background-color: $color-manatee;
+    }
+
+    .info__name {
+        font-weight: 700;
+    }
+}

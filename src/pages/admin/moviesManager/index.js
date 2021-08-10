@@ -1,6 +1,7 @@
 import apiMovie from "apis/tasks/apiMovie";
 import { logout } from "app/features/account/accountSlice";
 import { movieActions } from "app/sagas/movies/movieActions";
+import FilterBar from "components/filterBar";
 import Paging from "components/paging";
 import { GENRE_DATA } from "constants/common";
 import { ERROR_NOTIFICATION } from "constants/notificationMessage";
@@ -10,8 +11,8 @@ import {
   Editing,
   HeaderFilter,
   Lookup,
-  Pager,
   RequiredRule,
+  Scrolling,
 } from "devextreme-react/data-grid";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -25,7 +26,7 @@ import TagBoxEditorCell from "./tagBoxEditorCell";
 function MoviesManager() {
   const [movies, setMovies] = useState([]);
   const [total, setTotal] = useState(0);
-  const [filters, setFilter] = useState({ _page: 1, _limit: 10 });
+  const [filters, setFilter] = useState({ _page: 1, _limit: 8 });
   const dispatch = useDispatch();
   const history = useHistory();
   const createCellTemplate = (container, options) => {
@@ -72,7 +73,10 @@ function MoviesManager() {
 
   return (
     <section className="movies-manager">
-      <main className="users__main">
+      <header className="movies-manager__header">
+        <FilterBar onFiltersChange={handleFilterChange} filters={filters} />
+      </header>
+      <main className="movies-manager__main">
         <DataGrid
           dataSource={movies}
           allowColumnResizing={true}
@@ -126,16 +130,16 @@ function MoviesManager() {
             allowAdding={true}
             allowDeleting={true}
           />
-          <Pager visible={false} />
+          <Scrolling mode="infinite" />
         </DataGrid>
       </main>
-      <footer className="users__footer">
+      <footer className="movies-manager__footer">
         <Paging
           total={total}
           filters={filters}
           length={movies.length}
           onFiltersChange={handleFilterChange}
-          content="users"
+          content="movies"
         />
       </footer>
     </section>

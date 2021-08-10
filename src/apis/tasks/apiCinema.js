@@ -5,6 +5,7 @@ class ApiCinema extends ApiCore {
   constructor() {
     super({
       collection: CINEMAS_COLLECTION,
+      getById: true,
       get: true,
       post: true,
       put: true,

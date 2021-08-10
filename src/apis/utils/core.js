@@ -7,6 +7,11 @@ export class ApiCore {
         return apiProvider.get(options.collection, filter);
       };
     }
+    if (options.getById) {
+      this.getById = (id) => {
+        return apiProvider.getById(options.collection, id);
+      };
+    }
     if (options.post) {
       this.post = (model, collection) => {
         return apiProvider.post(collection || options.collection, model);

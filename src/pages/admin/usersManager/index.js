@@ -11,10 +11,10 @@ import {
   Editing,
   EmailRule,
   Lookup,
-  Pager,
   PatternRule,
   RangeRule,
   RequiredRule,
+  Scrolling,
 } from "devextreme-react/data-grid";
 import { PHONE_NUMBER_REGEX } from "constants/regex";
 import { userAction } from "app/sagas/users/userActions";
@@ -28,7 +28,7 @@ function UsersManager() {
   const maxDate = new Date().setFullYear(new Date().getFullYear() - 12);
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
-  const [filters, setFilter] = useState({ _page: 1, _limit: 10 });
+  const [filters, setFilter] = useState({ _page: 1, _limit: 16 });
   const account = useSelector((state) => state.account);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -117,7 +117,7 @@ function UsersManager() {
             allowAdding={true}
             allowDeleting={true}
           />
-          <Pager visible={false} />
+          <Scrolling mode="infinite" />
         </DataGrid>
       </main>
       <footer className="users__footer">

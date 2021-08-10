@@ -1,32 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import "./style.scss";
-import FilterBar from "./components/filterBar";
+import FilterBar from "components/filterBar";
 import apiMovie from "apis/tasks/apiMovie";
 import MovieItem from "components/movieItem";
-import Paging from "./components/paging";
 import { changeShowLoading } from "app/features/common";
 import { warning } from "react-toastify-redux";
-import { CATEGORY_COMING_SOON, CATEGORY_NOW_SHOWING } from "constants/categories";
+import {
+  CATEGORY_COMING_SOON,
+  CATEGORY_NOW_SHOWING,
+} from "constants/categories";
 import { ERROR_NOTIFICATION } from "constants/notificationMessage";
+import Paging from "components/paging";
 
 Movies.propTypes = {
   location: PropTypes.object,
 };
 
-function Movies(props) {
+function Movies({ location }) {
   const { t } = useTranslation();
-  const movieFilter = useSelector((state) => state.movieFilter);
+  const [movieFilter, setMovieFilter] = useState({ _limit: 8, _page: 1 });
   const [movies, setMovies] = useState([]);
   const [category, setCategory] = useState(
-    props.location.category || CATEGORY_NOW_SHOWING
+    location.category || CATEGORY_NOW_SHOWING
   );
   const [totalMovie, setTotalMovie] = useState(0);
   const dispatch = useDispatch();
   const handleChangeCategory = (event) => {
     setCategory(event.target.dataset.value);
+  };
+
+  const handleFiltersChange = (newFilter) => {
+    setMovieFilter(newFilter);
   };
 
   useEffect(() => {
@@ -76,7 +83,10 @@ function Movies(props) {
         </div>
       </header>
       <div className="movie__filters ">
-        <FilterBar />
+        <FilterBar
+          onFiltersChange={handleFiltersChange}
+          filters={movieFilter}
+        />
       </div>
       <div className="movie__list ">
         <ul>
@@ -96,10 +106,11 @@ function Movies(props) {
       </div>
       <div className="movie__paging">
         <Paging
+          content="movies"
           total={totalMovie}
-          current={movieFilter._page}
-          limit={movieFilter._limit}
+          filters={movieFilter}
           length={movies.length}
+          onFiltersChange={handleFiltersChange}
         />
       </div>
     </section>

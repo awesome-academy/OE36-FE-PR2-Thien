@@ -26,13 +26,9 @@ function MovieDetails({ match }) {
     dispatch(changeShowLoading(true));
     dispatch(changePlayEmbedVideo(false));
     try {
-      apiMovie.get({ id: movieId }).then((response) => {
-        if (
-          response.status >= 200 &&
-          response.status < 300 &&
-          response.data[0]
-        ) {
-          dispatch(changeMovie({ movie: response.data[0] }));
+      apiMovie.getById(movieId).then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+          dispatch(changeMovie({ movie: response.data }));
         } else {
           history.push(appRoutes.movies.path);
           dispatch(warning(response.data || ERROR_NOTIFICATION));
