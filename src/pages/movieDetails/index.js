@@ -9,7 +9,7 @@ import { appRoutes } from "routers/routesConfig";
 import apiMovie from "apis/tasks/apiMovie";
 import { warning } from "react-toastify-redux";
 import ShowTimeSelect from "./components/showTimeSelect";
-import { changeMovie } from "app/features/offer/offerSlice";
+import { changeMovie, changeShowDate, clearOffer } from "app/features/offer/offerSlice";
 import "./style.scss";
 import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 
@@ -23,12 +23,14 @@ function MovieDetails({ match }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(clearOffer());
     dispatch(changeShowLoading(true));
     dispatch(changePlayEmbedVideo(false));
     try {
       apiMovie.getById(movieId).then((response) => {
         if (response.status >= 200 && response.status < 300) {
           dispatch(changeMovie({ movie: response.data }));
+          dispatch(changeShowDate({ date: new Date() }));
         } else {
           history.push(appRoutes.movies.path);
           dispatch(warning(response.data || ERROR_NOTIFICATION));

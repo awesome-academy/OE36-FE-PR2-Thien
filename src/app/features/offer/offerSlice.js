@@ -4,8 +4,10 @@ const initialState = {
   VIPNumber: 0,
   regularNumber: 0,
   totalPrice: 0,
-  sessionTimeLeft: 180,
+  ticketPrice: 0,
+  sessionTimeLeft: 180000000,
   seats: [],
+  foods: [],
 };
 const offerSlice = createSlice({
   name: "offer",
@@ -20,22 +22,36 @@ const offerSlice = createSlice({
     },
     changeShowtime: (state, action) => {
       state.showtime = action.payload.showtime;
-      state.cinemaName = action.payload.cinemaName;
-      state.cinemaId = action.payload.cinemaId;
     },
     changeRegularNumber: (state, action) => {
       state.regularNumber = action.payload.regularNumber;
-      state.totalPrice = action.payload.totalPrice;
+      state.totalPrice = action.payload.ticketPrice;
+      state.ticketPrice = action.payload.ticketPrice
     },
     changeVIPNumber: (state, action) => {
       state.VIPNumber = action.payload.VIPNumber;
-      state.totalPrice = action.payload.totalPrice;
+      state.totalPrice = action.payload.ticketPrice;
+      state.ticketPrice = action.payload.ticketPrice
     },
     changeSeats: (state, action) => {
       state.seats = action.payload.seats;
     },
     changeSessionTimeLeft: (state, action) => {
       state.sessionTimeLeft = action.payload;
+    },
+    changeMethod: (state, action) => {
+      state.method = action.payload;
+    },
+    changeStep: (state, action) => {
+      state.currentStep = action.payload.currentStep;
+      state.nextStep = action.payload.nextStep;
+    },
+    changeFood: (state, action) => {
+      state.foods = action.payload.foods,
+      state.totalPrice = action.payload.totalPrice;
+    },
+    changeTotalPrice: (state, action) => {
+      state.totalPrice = action.payload
     },
     clearOffer: () => initialState,
   },
@@ -49,6 +65,10 @@ export const {
   changeShowtime,
   changeShowDate,
   changeSessionTimeLeft,
+  changeMethod,
   clearOffer,
+  changeStep,
+  changeFood,
+  changeTotalPrice
 } = offerSlice.actions;
 export default offerSlice.reducer;

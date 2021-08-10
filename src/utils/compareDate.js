@@ -1,5 +1,8 @@
 export function isEqual(date1, date2) {
+  const newDate1 = new Date(date1);
+  const newDate2 = new Date(date2);
   return (
-    date1.getDate() === date2.getDate() && date1.getMonth() === date2.getMonth()
+    newDate1.getDate() === newDate2.getDate() &&
+    newDate1.getMonth() === newDate2.getMonth()
   );
 }

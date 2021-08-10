@@ -1,7 +1,6 @@
 import { changeCurrentPath } from "app/features/common";
 import AdminHeader from "layouts/admin/adminHeader";
 import AdminMain from "layouts/admin/adminMain";
-import SeatSelect from "pages/seatSelect";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch, useLocation } from "react-router-dom";
@@ -37,11 +36,6 @@ function App() {
         />
       ))}
 
-      <Route
-        path={appRoutes.seatSelect.path}
-        exact={false}
-        render={() => <SeatSelect />}
-      />
       <Route
         render={() => (
           <>

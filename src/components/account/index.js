@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import { logout } from "app/features/account/accountSlice";
 import { IMAGE_COLLECTION } from "constants/collections";
 import { BASE_URL } from "constants/common";

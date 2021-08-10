@@ -13,7 +13,7 @@ import { movieActions } from "./movieActions";
 export function* addMovie({ payload }) {
   yield put(changeShowLoading(true));
   try {
-    const response = yield call(apiMovie.post(payload));
+    const response = yield call(() => apiMovie.post(payload));
     if (response.status === 201) {
       yield put(info(ADD_SUCCESS_NOTIFICATION));
     } else {

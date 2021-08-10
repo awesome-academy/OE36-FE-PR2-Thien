@@ -1,0 +1,30 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.food-item {
+    width: fit-content;
+    box-sizing: border-box;
+    padding: 20px;
+
+    img {
+        @include linear-gradient((0.25turn, $color-white 10%, $color-alto 50%, $color-white 90%));
+        @include prefix(animation, gradientLoading 3s linear infinite forwards);
+        background-size: 320px 640px;
+    }
+
+    h4,
+    .food__info>div {
+        margin: 10px 0;
+    }
+
+    .food__number {
+        span {
+            font-size: 18px;
+            margin: 0 8px;
+        }
+
+        .dx-button {
+            @include box(30px)
+        }
+    }
+}

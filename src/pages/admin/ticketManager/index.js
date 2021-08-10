@@ -22,7 +22,6 @@ function TicketManager() {
   const dispatch = useDispatch();
 
   const handleShowtimeChange = (showtimeList, newDate) => {
-    console.log(showtimeList)
     const fromDate = Math.min(
       selectedMovie.showing_from_date || new Date().getTime(),
       newDate || selectedMovie.showing_from_date

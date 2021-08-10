@@ -1,0 +1,48 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.payment-step {
+    .payment-step__main {
+        .payment-step__method {
+            @include flex(column, flex-start, flex-start, nowrap, 10px);
+
+            &>div {
+                @include flex(column, center, center);
+                box-sizing: border-box;
+                min-height: 40px;
+                width: 100%;
+
+
+            }
+
+            label {
+                padding: 10px 15px;
+                width: 100%;
+
+                &>span {
+                    @include flex(row, flex-start, center, nowrap, 10px);
+                    font-size: 18px;
+                }
+            }
+
+            .credit-card__form {
+                @include prefix(transition, opacity 0.5s);
+                opacity: 0;
+                margin-top: 20px;
+
+                .dx-textbox {
+                    margin-bottom: 10px;
+                }
+            }
+
+            input[type="radio"]:checked~label {
+                background-color: $color-alto;
+
+                &>div {
+                    opacity: 1;
+                    background-color: inherit;
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { SelectBox, TextBox } from "devextreme-react";
+import { ROLE_DATA, STATUS_DATA } from "constants/common";
 
 UserFilterBar.propTypes = {
   filters: PropTypes.object,
@@ -9,16 +10,6 @@ UserFilterBar.propTypes = {
 
 function UserFilterBar({ filters, onFiltersChanged }) {
   let timeout;
-  const status = [
-    { label: "All", value: "" },
-    { label: "Active", value: "active" },
-    { label: "Block", value: "block" },
-  ];
-  const role = [
-    { label: "All", value: "" },
-    { label: "Basic User", value: "basic user" },
-    { label: "Admin", value: "admin" },
-  ];
   const handleStatusChange = (status) => {
     onFiltersChanged({
       ...filters,
@@ -44,14 +35,14 @@ function UserFilterBar({ filters, onFiltersChanged }) {
   return (
     <div className="filter-bar">
       <SelectBox
-        items={status}
+        items={STATUS_DATA}
         displayExpr="label"
         valueExpr="value"
         placeholder="Status"
         onValueChange={handleStatusChange}
       />
       <SelectBox
-        items={role}
+        items={ROLE_DATA}
         displayExpr="label"
         valueExpr="value"
         placeholder="Role"

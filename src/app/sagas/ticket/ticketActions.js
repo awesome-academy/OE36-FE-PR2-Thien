@@ -1,0 +1,5 @@
+export const ticketActions = {
+  ADD_TICKET: "ADD_TICKET",
+  UPDATE_TICKET: "UPDATE_TICKET",
+  REMOVE_TICKET: "REMOVE_TICKET",
+};

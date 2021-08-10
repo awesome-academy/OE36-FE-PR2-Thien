@@ -46,6 +46,8 @@ function MovieContent() {
         {movie?.genre && (
           <div className="movie__genre">
             <p>
+              {t("genre")}:
+              {" "} 
               {movie.genre.map((genreItem, index) => (
                 <span key={index}>{`${genreItem}${
                   index < movie.genre.length - 1 ? ", " : ""
