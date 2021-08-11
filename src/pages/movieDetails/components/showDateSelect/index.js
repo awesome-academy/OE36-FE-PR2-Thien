@@ -16,7 +16,7 @@ function ShowDateSelect() {
     const beginDate = new Date();
     for (
       let date = beginDate;
-      date <= new Date(Number(toDate));
+      date <= new Date(toDate);
       date.setDate(date.getDate() + 1)
     ) {
       newDateList.push(new Date(date));

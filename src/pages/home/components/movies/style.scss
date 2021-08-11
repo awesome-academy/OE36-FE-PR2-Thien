@@ -41,7 +41,7 @@ section {
 
     .section__content {
         ul {
-            @include flex(row, space-between);
+            @include flex(row, flex-start, stretch, nowrap, 15px);
 
             @include media-query(medium, max) {
                 @include flex-wrap(wrap);

@@ -18,7 +18,7 @@ function Paging({ content, length, total, filters, onFiltersChange }) {
   const page = Number(filters._page);
   const { t } = useTranslation();
   const handleChangeLimit = (limit) => {
-    onFiltersChange({ ...filters, _limit: limit });
+    onFiltersChange({ ...filters, _limit: limit, _page: 1 });
   };
   const handleGotoPrev = () => {
     onFiltersChange({ ...filters, _page: page - 1 });

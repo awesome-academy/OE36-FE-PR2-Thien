@@ -12,9 +12,10 @@ import "./style.scss";
 FilterBar.propTypes = {
   filters: PropTypes.object,
   onFiltersChange: PropTypes.func,
+  onCinemaChange: PropTypes.func
 };
 
-function FilterBar({ onFiltersChange, filters }) {
+function FilterBar({ onFiltersChange, filters, onCinemaChange }) {
   const [cinemaData, setCinemaData] = useState([]);
 
   useEffect(() => {
@@ -37,8 +38,9 @@ function FilterBar({ onFiltersChange, filters }) {
     }, 500);
   };
 
-  const handleChangeCinema = (cinemaId) => {
-    onFiltersChange({ ...filters, _page: 1, cinemas_like: cinemaId });
+  const handleChangeCinema = (cinema) => {
+    onFiltersChange({ ...filters, _page: 1, cinemas_like: cinema.id });
+    onCinemaChange(cinema)
   };
 
   const handleChangeLanguage = (language) => {
@@ -54,7 +56,6 @@ function FilterBar({ onFiltersChange, filters }) {
       <SelectBox
         items={cinemaData}
         displayExpr="name"
-        valueExpr="id"
         placeholder={t("cinemas")}
         onValueChange={handleChangeCinema}
       />
