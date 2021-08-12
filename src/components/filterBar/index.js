@@ -20,11 +20,7 @@ function FilterBar({ onFiltersChange, filters }) {
   useEffect(() => {
     try {
       apiCinema.get().then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          setCinemaData(response.data);
-        } else {
-          dispatch(warning(response.data || ERROR_NOTIFICATION));
-        }
+        setCinemaData(response.data);
       });
     } catch (error) {
       dispatch(warning(error.message || ERROR_NOTIFICATION));
@@ -34,15 +30,15 @@ function FilterBar({ onFiltersChange, filters }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   let timeout;
-  const handleChangeMovieName = ({event}) => {
+  const handleChangeMovieName = ({ event }) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       onFiltersChange({ ...filters, _page: 1, name_like: event.target.value });
     }, 500);
   };
 
-  const handleChangeCinema = (cinema) => {
-    onFiltersChange({ ...filters, _page: 1, cinema_like: cinema });
+  const handleChangeCinema = (cinemaId) => {
+    onFiltersChange({ ...filters, _page: 1, cinemas_like: cinemaId });
   };
 
   const handleChangeLanguage = (language) => {
@@ -58,7 +54,7 @@ function FilterBar({ onFiltersChange, filters }) {
       <SelectBox
         items={cinemaData}
         displayExpr="name"
-        valueExpr="name"
+        valueExpr="id"
         placeholder={t("cinemas")}
         onValueChange={handleChangeCinema}
       />

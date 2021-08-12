@@ -18,7 +18,7 @@ function Note() {
               <div className={`seat seat--selected`}></div>
               <span>Selected</span>
             </li>
-            <li>
+            <li className="seat-vip-wrap">
               <div className={`seat seat--vip`}></div>
               <span>VIP</span>
             </li>

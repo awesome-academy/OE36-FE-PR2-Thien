@@ -14,6 +14,8 @@ import Dashboard from "pages/admin/dashboard";
 import AdminLogin from "pages/admin/adminLogin";
 import UsersManager from "pages/admin/usersManager";
 import TicketManager from "pages/admin/ticketManager";
+import Payment from "pages/payment";
+import FoodSelect from "pages/foodSelect";
 
 const ROUTES_CONFIG = {
   APP_ROUTES: {
@@ -82,6 +84,16 @@ const ROUTES_CONFIG = {
       path: "/seats",
       exact: true,
       component: SeatSelect,
+    },
+    foodSelect: {
+      path: "/foods",
+      exact: true,
+      component: FoodSelect,
+    },
+    payment: {
+      path: "/payment",
+      exact: true,
+      component: Payment,
     },
   },
   ADMIN_ROUTES: {

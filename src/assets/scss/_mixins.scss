@@ -248,7 +248,7 @@
   -webkit-box-orient: vertical;
 }
 
-@mixin scrollbar() {
+@mixin scrollbar($track-color: $color-black-pearl, $thumb-color:$color-selective-yellow) {
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -259,12 +259,12 @@
 
   &::-webkit-scrollbar-track {
     height: 3px;
-    background-color: $color-black-pearl;
+    background-color: $track-color;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background-color: $color-selective-yellow;
+    background-color: $thumb-color;
     @include prefix(box-shadow, inset 0 0 4px $color-black-pearl);
   }
 

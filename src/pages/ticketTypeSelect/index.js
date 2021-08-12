@@ -2,6 +2,7 @@ import apiCinema from "apis/tasks/apiCinema";
 import { changeShowLoading } from "app/features/common";
 import {
   changeRegularNumber,
+  changeStep,
   changeVIPNumber,
 } from "app/features/offer/offerSlice";
 import React, { useEffect, useState } from "react";
@@ -16,40 +17,54 @@ import TicketTypeOption from "./ticketTypeOption";
 import "./style.scss";
 import { Button } from "devextreme-react";
 import { ERROR_NOTIFICATION } from "constants/notificationMessage";
+import { SEAT_NUMBER } from "constants/seatsPageConfig";
+import { SELECT_FOOD, SELECT_SEAT } from "constants/paymentStep";
 
 function TicketTypeSelect() {
   const offer = useSelector((state) => state.offer);
-  const seatsAvailable = offer.showtime?.seatsAvailable;
+  const showtime = offer.showtime;
   const [cinemaData, setCinemaData] = useState({});
   const history = useHistory();
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const handleChangeRegularNumber = (regularNumber) => {
-    if (validateAmount(regularNumber, offer.VIPNumber, seatsAvailable)) {
-      const totalPrice =
+    if (
+      validateAmount(
+        regularNumber,
+        offer.VIPNumber,
+        SEAT_NUMBER - showtime.occupied.length
+      )
+    ) {
+      const ticketPrice =
         offer.VIPNumber * cinemaData.VIPTicketPrice +
         regularNumber * cinemaData.regularTicketPrice;
       dispatch(
         changeRegularNumber({
           regularNumber: regularNumber,
-          totalPrice: totalPrice,
+          ticketPrice: ticketPrice,
         })
       );
     } else {
-      dispatch(warning(t("outOfRangeMessage")+seatsAvailable));
+      dispatch(warning(t("outOfRangeMessage")));
     }
   };
 
   const handleChangeVIPNumber = (VIPNumber) => {
-    if (validateAmount(offer.regularNumber, VIPNumber, seatsAvailable)) {
-      const totalPrice =
+    if (
+      validateAmount(
+        offer.regularNumber,
+        VIPNumber,
+        SEAT_NUMBER - showtime.occupied.length
+      )
+    ) {
+      const ticketPrice =
         VIPNumber * cinemaData.VIPTicketPrice +
         offer.regularNumber * cinemaData.regularTicketPrice;
       dispatch(
         changeVIPNumber({
           VIPNumber: VIPNumber,
-          totalPrice: totalPrice,
+          ticketPrice: ticketPrice,
         })
       );
     } else {
@@ -58,25 +73,23 @@ function TicketTypeSelect() {
   };
 
   const handleSubmit = () => {
+    dispatch(changeStep({ currentStep: SELECT_SEAT, nextStep: SELECT_FOOD }));
     history.replace(appRoutes.seatSelect.path);
   };
 
   useEffect(() => {
     dispatch(changeShowLoading(true));
     try {
-      apiCinema.getById(offer.cinemaId).then((response) => {
+      apiCinema.getById(showtime.cinemaId).then((response) => {
         if (response.status >= 200 && response.status < 300) {
           setCinemaData(response.data);
-        } else {
-          history.push(appRoutes.movies.path);
-          dispatch(warning(response.data || ERROR_NOTIFICATION));
         }
-        dispatch(changeShowLoading(false));
       });
     } catch (error) {
-      dispatch(changeShowLoading(false));
-      dispatch(warning(error.message || ERROR_NOTIFICATION));
+      dispatch(warning(ERROR_NOTIFICATION));
+      history.push(appRoutes.movies.path);
     }
+    dispatch(changeShowLoading(false));
   }, []);
   return (
     <>

@@ -38,6 +38,7 @@
                 @include flex(row, center, center);
                 background: url($button-play) no-repeat top center;
                 background-size: contain;
+                border-radius: 50%;
                 color: $color-white;
                 cursor: pointer;
                 font-size: 100px;

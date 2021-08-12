@@ -1,10 +1,10 @@
 @import "src/assets/scss/mixins";
 @import "src/assets/scss/variables";
 
-.seats-footer {
+.sub-footer {
     background-color: $color-black-pearl;
     color: $color-white;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     padding: 20px 0;
@@ -19,7 +19,7 @@
             }
 
             ul {
-                @include flex(row, flex-start, center, nowrap, 10px);
+                @include flex(row, flex-start, center, wrap, 10px);
 
                 div {
                     @include box(20px);

@@ -2,7 +2,7 @@ import apiAuth from "apis/tasks/apiAuth";
 import apiUploadImage from "apis/tasks/apiUploadImage";
 import { login } from "app/features/account/accountSlice";
 import { changeShowLoading } from "app/features/common";
-import { ACCOUNT_STATUS_BLOCKED, ADMIN_ROLE } from "constants/common";
+import { ACCOUNT_STATUS_ACTIVE, ACCOUNT_STATUS_BLOCKED, ADMIN_ROLE, BASIC_USER_ROLE } from "constants/common";
 import {
   ERROR_NOTIFICATION,
   LOGIN_NOTIFICATION,
@@ -71,6 +71,8 @@ export function* doSignup({ payload }) {
       const response = yield call(() =>
         apiAuth.signup({
           ...payload,
+          role: BASIC_USER_ROLE,
+          status: ACCOUNT_STATUS_ACTIVE,
           avatar: uploadResponse.data.shift(),
         })
       );
@@ -115,7 +117,6 @@ export function* watchSuccess() {
 }
 
 export function* doFailed(action) {
-  console.log(action.payload?.data);
   yield put(warning(action.payload?.data || ERROR_NOTIFICATION));
 }
 

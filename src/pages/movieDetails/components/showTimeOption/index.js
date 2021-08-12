@@ -10,27 +10,25 @@ import "./style.scss";
 import { changeCurrentPath } from "app/features/common";
 
 ShowTimeOption.propTypes = {
-  cinema: PropTypes.object,
-  showTime: PropTypes.array,
+  showtime: PropTypes.array,
+  cinemaId: PropTypes.number
 };
 
-function ShowTimeOption({ cinema, showTime }) {
+function ShowTimeOption({ showtime ,cinemaId}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const selectedDate = useSelector((state) => state.offer.date) || new Date();
   const userToken = useSelector((state) => state.account.token)
   const showTimeList = useMemo(() => {
-    return showTime?.filter((showtime) =>
-      isEqual(new Date(Number(showtime.date)), selectedDate)
+    return showtime?.filter((showtime) =>
+      isEqual(new Date(showtime.date), selectedDate) && showtime.cinemaId === cinemaId
     );
-  }, [showTime, selectedDate]);
+  }, [showtime, selectedDate]);
 
   const handleShowTimeSelect = (showtime) => {
     dispatch(
       changeShowtime({
         showtime: showtime,
-        cinemaName: cinema.cinemaName,
-        cinemaId: cinema.cinemaId,
       })
     );
     if(userToken){
@@ -44,13 +42,13 @@ function ShowTimeOption({ cinema, showTime }) {
 
   return (
     <>
-      {showTimeList.length > 0 && (
+      {showTimeList?.length > 0 && (
         <div className="cinema__showtime">
-          <h5 className="cinema__name">{cinema.cinemaName}</h5>
+          <h5 className="cinema__name">{showTimeList[0].cinemaName}</h5>
           <ul className="cinema__showtime-list">
             {showTimeList?.map((showtime, index) => (
               <li key={index} className="cinema__showtime">
-                {isEqual(new Date(Number(showtime.date)), selectedDate) && (
+                {isEqual(showtime.date, selectedDate) && (
                   <Button onClick={() => handleShowTimeSelect(showtime)}>
                     {showtime.time}
                   </Button>
