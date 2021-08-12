@@ -3,11 +3,9 @@ import getTime from "./getTime";
 
 export default function getShowtimeItem(data) {
   return {
-    room: data.room,
+    ...data,
     seatsAvailable: SEAT_NUMBER - data.occupied.length,
-    date: data.startDate.getTime(),
-    occupied: data.occupied,
+    date: data.startDate,
     time: getTime(data.startDate),
-    id: data.id
   };
 }

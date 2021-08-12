@@ -22,9 +22,9 @@ function Appointment({ data }) {
       </div>
       <div>
         <span>
-          {formatDate(appointmentData.startDate, "shortTime")}
+          {formatDate(new Date(appointmentData.startDate), "shortTime")}
           {" - "}
-          {formatDate(appointmentData.endDate, "shortTime")}
+          {formatDate(new Date(appointmentData.endDate), "shortTime")}
         </span>
       </div>
     </div>

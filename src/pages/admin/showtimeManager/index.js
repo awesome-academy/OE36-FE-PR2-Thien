@@ -1,6 +1,5 @@
 import apiMovie from "apis/tasks/apiMovie";
 import { logout } from "app/features/account/accountSlice";
-import { movieActions } from "app/sagas/movies/movieActions";
 import FilterBar from "components/filterBar";
 import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 import { SelectBox } from "devextreme-react";
@@ -12,8 +11,9 @@ import CustomSchedule from "./components/customScheduler";
 import MovieOption from "./components/movieOption";
 import "./style.scss";
 
-function TicketManager() {
+function ShowtimeManager() {
   const [selectedMovie, setSelectedMovie] = useState({});
+  const [selectedCinema, setSelectedCinema] = useState({});
   const [movies, setMovies] = useState([]);
   const [filters, setFilter] = useState({ _limit: 8 });
   const handleFilterChange = (newFilters) => {
@@ -21,30 +21,10 @@ function TicketManager() {
   };
   const dispatch = useDispatch();
 
-  const handleShowtimeChange = (showtimeList, newDate) => {
-    const fromDate = Math.min(
-      selectedMovie.showing_from_date || new Date().getTime(),
-      newDate || selectedMovie.showing_from_date
-    );
-    const toDate = Math.max(
-      selectedMovie.showing_to_date || new Date().getTime(),
-      newDate || selectedMovie.showing_to_date
-    );
-    const newMovieData = {
-      ...selectedMovie,
-      cinemas: showtimeList,
-      showing_from_date: fromDate,
-      showing_to_date: toDate,
-    };
-
-    setSelectedMovie(newMovieData);
-    dispatch({ type: movieActions.UPDATE_MOVIE, payload: newMovieData });
-  };
-
   useEffect(() => {
-    if (filters.cinema_like) {
+    if (filters.cinemas_like) {
       try {
-        apiMovie.get({ ...filters, cinema_like: "" }).then((response) => {
+        apiMovie.get({ ...filters, cinemas_like: "" }).then((response) => {
           if (response.status >= 200 && response.status < 300) {
             setMovies(response.data);
           } else if (response.status === 401) {
@@ -60,12 +40,14 @@ function TicketManager() {
     }
   }, [filters]);
   return (
-    <section className="ticket-manager">
-      <header className="ticket-manager__header">
-        <FilterBar onFiltersChange={handleFilterChange} filters={filters} />
+    <section className="showtime-manager">
+      <header className="showtime-manager__header">
+        <FilterBar onFiltersChange={handleFilterChange} 
+            onCinemaChange={setSelectedCinema}
+            filters={filters} />
         <div className="movies-select">
           <SelectBox
-            placeholder="Select movie"
+            placeholder={movies.length > 0 ? "Select movie" : "No content"}
             dataSource={movies}
             displayExpr="name"
             itemRender={MovieOption}
@@ -75,13 +57,13 @@ function TicketManager() {
       </header>
       <main>
         <CustomSchedule
-          cinemaName={filters.cinema_like}
+          cinema={selectedCinema}
+          cinemaId={filters.cinemas_like}
           movie={selectedMovie}
-          onShowtimeChange={handleShowtimeChange}
         />
       </main>
     </section>
   );
 }
 
-export default TicketManager;
+export default ShowtimeManager;
