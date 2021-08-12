@@ -1,0 +1,52 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.ticket-item {
+    @include prefix(box-shadow, 0 1px 5px rgba(0, 0, 0, 0.1));
+    @include flex(row, space-between, flex-start);
+    @include prefix(transition, all 0.5s);
+    background-color: $color-alto;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    max-height: 65px;
+    overflow: hidden;
+
+    &.expanded {
+        max-height: 280px;
+    }
+
+    .ticket-item__basic-info {
+        &>div {
+            margin-bottom: 5px;
+        }
+
+        .info__cinema-name {
+            font-weight: 18px;
+        }
+    }
+
+    i {
+        margin-right: 10px;
+    }
+
+    .ticket-item__status {
+        @include flex(row, flex-start, center);
+        height: 100%;
+        width: 90px;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        i {
+            font-size: 16px;
+        }
+
+        &--reject {
+            color: $color-red;
+        }
+
+        &--approve {
+            color: $color-selective-yellow;
+        }
+    }
+}

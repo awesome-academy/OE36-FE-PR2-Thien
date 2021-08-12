@@ -109,7 +109,11 @@ function UserInfo() {
           <div className="input-field">
             <label>
               <span>{t("email")}</span>
-              <TextBox name="email" defaultValue={account.email}>
+              <TextBox
+                name="email"
+                defaultValue={account.email}
+                disabled={disable}
+              >
                 <Validator>
                   <RequiredRule message={`${t("email")} ${t("isRequired")}`} />
                   <EmailRule message={`${t("email")} ${t("isInvalid")}`} />
@@ -120,13 +124,21 @@ function UserInfo() {
           <div className="input-field">
             <label>
               <span>{t("address")}</span>
-              <TextBox name="address" defaultValue={account.address}></TextBox>
+              <TextBox
+                name="address"
+                defaultValue={account.address}
+                disabled={disable}
+              ></TextBox>
             </label>
           </div>
           <div className="input-field">
             <label>
               <span>{t("phone")}</span>
-              <TextBox name="phone" defaultValue={account.phoneNumber}>
+              <TextBox
+                name="phone"
+                defaultValue={account.phoneNumber}
+                disabled={disable}
+              >
                 <Validator>
                   <PatternRule
                     message={`${t("phone")} ${t("isInvalid")}`}

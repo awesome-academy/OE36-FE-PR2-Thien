@@ -17,4 +17,23 @@
             max-width: 100%;
         }
     }
+
+    .content__title {
+        font-size: 18px;
+        font-weight: 700;
+        position: relative;
+        text-transform: uppercase;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+        width: fit-content;
+
+        &::before {
+            @include pseudo();
+            background-color: $color-selective-yellow;
+            border-radius: 4px;
+            height: 5px;
+            top: 100%;
+            width: 100%;
+        }
+    }
 }
