@@ -33,8 +33,6 @@ export function* watchAddShowtime() {
 
 export function* updateShowtime({ payload }) {
   yield put(changeShowLoading(true));
-  // eslint-disable-next-line no-debugger
-  debugger;
   try {
     const response = yield call(() =>
       apiShowtime.put(payload.showtime.id, payload.showtime)

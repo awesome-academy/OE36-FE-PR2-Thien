@@ -1,6 +1,7 @@
+import apiShowtime from "apis/tasks/apiShowtime";
 import apiTicket from "apis/tasks/apiTicket";
 import { changeShowLoading } from "app/features/common";
-import { TICKET_STATUS_PENDING } from "constants/common";
+import { TICKET_STATUS_PENDING, TICKET_STATUS_REJECT } from "constants/common";
 import {
   BOOKING_SUCCESS_NOTIFICATION,
   ERROR_NOTIFICATION,
@@ -11,7 +12,7 @@ import { showtimeActions } from "../showtime/showtimeActions";
 import { ticketActions } from "./ticketActions";
 
 export function* addTicket({ payload }) {
-    yield put(changeShowLoading(true));
+  yield put(changeShowLoading(true));
   try {
     const ticketData = {
       userId: payload.userId,
@@ -46,9 +47,55 @@ export function* addTicket({ payload }) {
   } catch (err) {
     yield put(error(ERROR_NOTIFICATION));
   }
-    yield put(changeShowLoading(false));
+  yield put(changeShowLoading(false));
 }
 
 export function* watchAddTicket() {
   yield takeLatest(ticketActions.ADD_TICKET, addTicket);
+}
+
+export function* updateTicket({ payload }) {
+  try {
+    const response = yield call(apiTicket.put, payload.id, payload);
+    const ticketSeat = payload.seats.map((seat) => seat.id);
+    if (response.status >= 200 && response.status < 400) {
+      const oldShowtime = yield call(apiShowtime.getById, payload.showtimeId);
+      if (
+        oldShowtime.status >= 200 &&
+        oldShowtime.status < 400 &&
+        payload.status === TICKET_STATUS_REJECT
+      ) {
+        const newOccupied = oldShowtime.data.occupied.filter(
+          (seat) => !ticketSeat.includes(seat)
+        );
+        const newShowtime = {
+          ...oldShowtime.data,
+          occupied: newOccupied,
+        };
+        yield put({
+          type: showtimeActions.UPDATE_SHOWTIME,
+          payload: { showtime: newShowtime },
+        });
+      } else if (payload.status !== TICKET_STATUS_REJECT) {
+        const newOccupied = new Set([
+          ...oldShowtime.data.occupied,
+          ...ticketSeat,
+        ]);
+        const newShowtime = {
+          ...oldShowtime.data,
+          occupied: Array.from(newOccupied),
+        };
+        yield put({
+          type: showtimeActions.UPDATE_SHOWTIME,
+          payload: { showtime: newShowtime },
+        });
+      }
+    }
+  } catch (err) {
+    yield put(error(ERROR_NOTIFICATION));
+  }
+}
+
+export function* watchUpdateTicket() {
+  yield takeLatest(ticketActions.UPDATE_TICKET, updateTicket);
 }

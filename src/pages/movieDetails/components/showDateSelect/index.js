@@ -14,9 +14,10 @@ function ShowDateSelect() {
   const dateList = useMemo(() => {
     let newDateList = [];
     const beginDate = new Date();
+    const endDate = new Date().setDate(new Date(toDate).getDate() + 1);
     for (
       let date = beginDate;
-      date <= new Date(toDate);
+      date < endDate;
       date.setDate(date.getDate() + 1)
     ) {
       newDateList.push(new Date(date));

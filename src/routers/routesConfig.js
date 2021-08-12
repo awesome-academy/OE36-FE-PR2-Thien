@@ -16,6 +16,7 @@ import UsersManager from "pages/admin/usersManager";
 import ShowtimeManager from "pages/admin/showtimeManager";
 import Payment from "pages/payment";
 import FoodSelect from "pages/foodSelect";
+import TicketManager from "pages/admin/ticketManager";
 
 const ROUTES_CONFIG = {
   APP_ROUTES: {
@@ -120,6 +121,12 @@ const ROUTES_CONFIG = {
       exact: true,
       navbar: true,
       component: ShowtimeManager,
+    },
+    tickets: {
+      path: "/admin/tickets",
+      exact: true,
+      navbar: true,
+      component: TicketManager,
     },
     home: {
       path: "/admin",

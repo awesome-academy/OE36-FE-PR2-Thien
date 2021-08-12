@@ -21,6 +21,7 @@ export default function* rootSaga() {
     fork(movieSaga.watchRemoveMovie),
     
     fork(ticketSaga.watchAddTicket),
+    fork(ticketSaga.watchUpdateTicket),
 
     fork(showtimeSaga.watchAddShowtime),
     fork(showtimeSaga.watchUpdateShowtime),
