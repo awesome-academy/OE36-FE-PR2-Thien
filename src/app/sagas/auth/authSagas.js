@@ -1,12 +1,19 @@
 import apiAuth from "apis/tasks/apiAuth";
 import apiUploadImage from "apis/tasks/apiUploadImage";
-import { login } from "app/features/account/accountSlice";
+import apiUser from "apis/tasks/apiUser";
+import { login, update } from "app/features/account/accountSlice";
 import { changeShowLoading } from "app/features/common";
-import { ACCOUNT_STATUS_ACTIVE, ACCOUNT_STATUS_BLOCKED, ADMIN_ROLE, BASIC_USER_ROLE } from "constants/common";
+import {
+  ACCOUNT_STATUS_ACTIVE,
+  ACCOUNT_STATUS_BLOCKED,
+  ADMIN_ROLE,
+  BASIC_USER_ROLE,
+} from "constants/common";
 import {
   ERROR_NOTIFICATION,
   LOGIN_NOTIFICATION,
   PERMISSION_ERROR_NOTIFICATION,
+  UPDATE_SUCCESS_NOTIFICATION,
 } from "constants/notificationMessage";
 import { warning } from "react-toastify-redux";
 import { call, put, takeLatest } from "redux-saga/effects";
@@ -60,29 +67,46 @@ export function* watchLogin() {
   yield takeLatest(authAction.LOGIN, doLogin);
 }
 
-export function* doSignup({ payload }) {
+export function* doSignupOrUpdate({ payload }) {
   yield put(changeShowLoading(true));
   try {
     let uploadResponse;
-    if (payload.avatar) {
+    if (payload.avatar && typeof payload.avatar !== "string") {
       uploadResponse = yield call(() => apiUploadImage.upload(payload.avatar));
     }
-    if (uploadResponse?.status >= 200 && uploadResponse?.status < 300) {
-      const response = yield call(() =>
-        apiAuth.signup({
-          ...payload,
-          role: BASIC_USER_ROLE,
-          status: ACCOUNT_STATUS_ACTIVE,
-          avatar: uploadResponse.data.shift(),
-        })
-      );
-
-      if (response.status >= 200 && response.status < 300) {
+    if (
+      (uploadResponse?.status >= 200 && uploadResponse?.status < 300) ||
+      !payload.avatar ||
+      typeof payload.avatar === "string"
+    ) {
+      const response = payload.id
+        ? yield call(() =>
+            apiUser.put(payload.id, {
+              ...payload,
+              avatar: uploadResponse?.data?.shift() || payload.avatar,
+            })
+          )
+        : yield call(() =>
+            apiAuth.signup({
+              ...payload,
+              role: BASIC_USER_ROLE,
+              status: ACCOUNT_STATUS_ACTIVE,
+              avatar: uploadResponse?.data?.shift() || payload.avatar,
+            })
+          );
+      if (response.status >= 200 && response.status < 300 && !payload.id) {
         yield put({
           type: authAction.DO_SUCCEEDED,
           payload: {
             ...response.data.user,
             token: response.data.accessToken,
+          },
+        });
+      } else if (payload.id) {
+        yield put({
+          type: authAction.DO_UPDATE_SUCCEEDED,
+          payload: {
+            ...response.data,
           },
         });
       } else {
@@ -104,7 +128,20 @@ export function* doSignup({ payload }) {
 }
 
 export function* watchSignup() {
-  yield takeLatest(authAction.SIGNUP, doSignup);
+  yield takeLatest(authAction.SIGNUP, doSignupOrUpdate);
+}
+
+export function* watchUpdate() {
+  yield takeLatest(authAction.UPDATE, doSignupOrUpdate);
+}
+
+export function* doUpdateSuccess(action) {
+  yield put(update(action.payload));
+  yield put(warning(UPDATE_SUCCESS_NOTIFICATION));
+}
+
+export function* watchUpdateSuccess() {
+  yield takeLatest(authAction.DO_UPDATE_SUCCEEDED, doUpdateSuccess);
 }
 
 export function* doSuccess(action) {

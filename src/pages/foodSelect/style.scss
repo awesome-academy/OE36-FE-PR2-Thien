@@ -34,7 +34,8 @@
 
             ul {
                 @include scrollbar($color-alto, $color-manatee);
-                @include flex();
+                @include flex(row, flex-start, center, nowrap, 10px);
+                padding: 10px  5px;
                 overflow-x: auto;
 
                 li {

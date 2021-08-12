@@ -63,7 +63,10 @@ function Account() {
           <div className={`${showDropdown && "active"} dropdown__menu`}>
             <nav>
               <ul>
-                <li className="menu__item">
+                <li
+                  className="menu__item"
+                  onClick={() => setShowDropdown(false)}
+                >
                   <Link to={routes.profile.path}>
                     <span>{t("profile")}</span>
                   </Link>

@@ -1,6 +1,8 @@
 export const authAction = {
     SIGNUP: "SIGNUP",
     LOGIN: "LOGIN", 
+    UPDATE: "UPDATE_PROFILE",
+    DO_UPDATE_SUCCEEDED: "UPDATE_SUCCEEDED",
     DO_FAILED: "FAILED",
     DO_SUCCEEDED: "SUCCEEDED",
 }
