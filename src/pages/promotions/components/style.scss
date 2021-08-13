@@ -1,0 +1,77 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.promotion-item {
+    max-height: 350px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    img {
+        @include prefix(animation, gradientLoading 4s linear infinite forwards);
+        @include linear-gradient((0.25turn, $color-white 10%, $color-alto 50%, $color-white 90%));
+        background-size: 320px 640px;
+        max-width: 100%;
+        height: 100%;
+    }
+
+    &__overlay {
+        @include prefix(transition, all 0.5s);
+        background-color: $color-overlay;
+        bottom: 0;
+        box-sizing: border-box;
+        color: $color-white;
+        height: 0;
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+
+        .show-details {
+            @include prefix(transition, all 0.3s);
+            @include centerer();
+            border: 1px solid $color-white;
+            box-sizing: content-box;
+            max-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+
+            span {
+                position: relative;
+                z-index: 1;
+            }
+
+            &::before {
+                @include pseudo();
+                @include prefix(transition, all 0.3s);
+                background-color: $color-selective-yellow;
+                height: 100%;
+                left: 50%;
+                top: 0;
+                width: 0;
+            }
+
+            &:hover {
+                color: $color-black-pearl;
+
+                &::before {
+                    left: 0;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .promotion-item__overlay {
+            padding: 20px 10px;
+            height: 100%;
+        }
+
+        .show-details {
+            padding: 6px 10px 10px;
+            max-width: 100%;
+        }
+
+    }
+}

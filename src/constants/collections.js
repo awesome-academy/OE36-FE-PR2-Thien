@@ -6,3 +6,4 @@ export const CINEMAS_COLLECTION = "cinemas";
 export const SHOWTIME_COLLECTION = "showtime";
 export const FOOD_COLLECTION = "foods";
 export const TICKET_COLLECTION = "tickets";
+export const PROMOTION_COLLECTION = "promotions";
