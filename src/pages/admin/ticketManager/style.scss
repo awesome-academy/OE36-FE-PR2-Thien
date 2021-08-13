@@ -1,0 +1,27 @@
+@import "src/assets/scss/mixins";
+
+.ticket-manager {
+    box-sizing: border-box;
+    left: 220px;
+    padding: 30px 15px 0;
+    position: absolute;
+    width: calc(100% - 220px);
+    height: 100%;
+
+    &__header {
+        .dx-scrollable-wrapper {
+            min-height: 110px;
+        }
+    }
+
+    .ticket-filter {
+        @include flex(row, flex-start, center, wrap, 15px);
+        margin: 10px 0;
+        width: 100%;
+
+        .dx-selectbox:first-child {
+            width: 100%;
+            max-width: 405px;
+        }
+    }
+}

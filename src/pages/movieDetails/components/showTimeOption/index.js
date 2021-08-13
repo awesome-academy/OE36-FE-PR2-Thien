@@ -20,8 +20,8 @@ function ShowTimeOption({ showtime ,cinemaId}) {
   const selectedDate = useSelector((state) => state.offer.date) || new Date();
   const userToken = useSelector((state) => state.account.token)
   const showTimeList = useMemo(() => {
-    return showtime?.filter((showtime) =>
-      isEqual(new Date(showtime.date), selectedDate) && showtime.cinemaId === cinemaId
+    return showtime?.filter((showtimeItem) =>
+      isEqual(new Date(showtimeItem.date), selectedDate) && showtimeItem.cinemaId === cinemaId
     );
   }, [showtime, selectedDate]);
 

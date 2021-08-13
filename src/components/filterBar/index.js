@@ -12,7 +12,7 @@ import "./style.scss";
 FilterBar.propTypes = {
   filters: PropTypes.object,
   onFiltersChange: PropTypes.func,
-  onCinemaChange: PropTypes.func
+  onCinemaChange: PropTypes.func,
 };
 
 function FilterBar({ onFiltersChange, filters, onCinemaChange }) {
@@ -40,7 +40,9 @@ function FilterBar({ onFiltersChange, filters, onCinemaChange }) {
 
   const handleChangeCinema = (cinema) => {
     onFiltersChange({ ...filters, _page: 1, cinemas_like: cinema.id });
-    onCinemaChange(cinema)
+    if (typeof onCinemaChange === "function") {
+      onCinemaChange(cinema);
+    }
   };
 
   const handleChangeLanguage = (language) => {

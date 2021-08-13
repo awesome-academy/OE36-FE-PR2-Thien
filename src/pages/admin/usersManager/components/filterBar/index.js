@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { SelectBox, TextBox } from "devextreme-react";
-import { ROLE_DATA, STATUS_DATA } from "constants/common";
+import { ROLE_DATA, USER_STATUS_DATA } from "constants/common";
 
 UserFilterBar.propTypes = {
   filters: PropTypes.object,
@@ -35,7 +35,7 @@ function UserFilterBar({ filters, onFiltersChanged }) {
   return (
     <div className="filter-bar">
       <SelectBox
-        items={STATUS_DATA}
+        items={USER_STATUS_DATA}
         displayExpr="label"
         valueExpr="value"
         placeholder="Status"

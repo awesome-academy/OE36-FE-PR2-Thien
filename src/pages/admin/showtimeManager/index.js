@@ -1,15 +1,13 @@
 import apiMovie from "apis/tasks/apiMovie";
-import { logout } from "app/features/account/accountSlice";
 import FilterBar from "components/filterBar";
-import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 import { SelectBox } from "devextreme-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { error, warning } from "react-toastify-redux";
-import { adminRoutes } from "routers/routesConfig";
+import { error } from "react-toastify-redux";
 import CustomSchedule from "./components/customScheduler";
-import MovieOption from "./components/movieOption";
+import MovieOption from "components/movieOption";
 import "./style.scss";
+import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 
 function ShowtimeManager() {
   const [selectedMovie, setSelectedMovie] = useState({});
@@ -27,24 +25,21 @@ function ShowtimeManager() {
         apiMovie.get({ ...filters, cinemas_like: "" }).then((response) => {
           if (response.status >= 200 && response.status < 300) {
             setMovies(response.data);
-          } else if (response.status === 401) {
-            dispatch(logout());
-            history.replace(adminRoutes.login.path);
-          } else {
-            dispatch(warning(response.data || ERROR_NOTIFICATION));
           }
         });
       } catch (err) {
-        dispatch(error(err));
+        dispatch(error(ERROR_NOTIFICATION));
       }
     }
   }, [filters]);
   return (
     <section className="showtime-manager">
       <header className="showtime-manager__header">
-        <FilterBar onFiltersChange={handleFilterChange} 
-            onCinemaChange={setSelectedCinema}
-            filters={filters} />
+        <FilterBar
+          onFiltersChange={handleFilterChange}
+          onCinemaChange={setSelectedCinema}
+          filters={filters}
+        />
         <div className="movies-select">
           <SelectBox
             placeholder={movies.length > 0 ? "Select movie" : "No content"}

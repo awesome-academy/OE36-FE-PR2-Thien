@@ -7,6 +7,7 @@ export const ACCOUNT_STATUS_BLOCKED = "blocked";
 export const ADMIN_ROLE = "admin";
 export const BASIC_USER_ROLE = "user";
 export const TICKET_STATUS_PENDING = "pending";
+export const TICKET_STATUS_REJECT = "reject";
 
 export const GENRE_DATA = [
   { label: "All", value: "" },
@@ -40,8 +41,14 @@ export const ROLE_DATA = [
   { label: "Admin", value: "admin" },
 ];
 
-export const STATUS_DATA = [
+export const USER_STATUS_DATA = [
   { label: "All", value: "" },
   { label: "Active", value: "active" },
   { label: "Block", value: "block" },
+];
+
+export const TICKET_STATUS_DATA = [
+  { label: "Approve", value: "approve" },
+  { label: "Pending", value: "pending" },
+  { label: "Reject", value: "reject" },
 ];

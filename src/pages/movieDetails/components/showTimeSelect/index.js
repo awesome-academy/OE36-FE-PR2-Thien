@@ -15,7 +15,7 @@ function ShowTimeSelect() {
   useEffect(() => {
     try {
       apiShowtime
-        .get({ movieId: movie?.movieId })
+        .get({ movieId: movie?.id })
         .then((response) => setShowtimeList(response.data));
     } catch (err) {
       dispatch(warning(ERROR_NOTIFICATION));
