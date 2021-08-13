@@ -1,0 +1,60 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.news-item {
+    @include flex(row, flex-start, flex-start, nowrap, 10px);
+    @include prefix(box-shadow, 0 1px 5px rgba(0, 0, 0, 0.344));
+
+    @include media-query(medium, max) {
+        @include flex-direction(column);
+
+        &__image {
+            width: 100% !important;
+
+            img {
+                min-width: 100%;
+            }
+        }
+    }
+
+    @include media-query(medium, min) {
+        .dx-button {
+            position: absolute !important;
+            right: 20px;
+            bottom: 20px;
+        }
+    }
+
+    margin-bottom: 15px;
+    position: relative;
+
+    &__image {
+        min-width: 300px;
+        width: 300px;
+        height: 200px;
+        overflow: hidden;
+
+        img {
+            object-fit: cover;
+            max-height: 100%;
+        }
+    }
+
+    &__content {
+        padding: 20px 20px 20px 10px;
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    }
+
+    .dx-button {
+        position: relative;
+    }
+
+}

@@ -14,7 +14,7 @@ PromotionDetails.propTypes = {
 };
 
 function PromotionDetails({ match }) {
-  const promotionsId = match.params.movieId;
+  const promotionsId = match.params.promotionId;
   const [promotionData, setPromotionData] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {

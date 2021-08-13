@@ -1,0 +1,23 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.news-pages {
+    padding: 30px 0;
+
+    &__title {
+        font-size: 18px;
+        padding: 10px 0;
+        margin-bottom: 10px;
+        position: relative;
+        text-transform: uppercase;
+        width: fit-content;
+        
+        &::before{
+            @include pseudo();
+            background-color: $color-selective-yellow;
+            bottom: 0;
+            height: 5px;
+            width: 100%;
+        }
+    }
+}

@@ -5,7 +5,7 @@ const initialState = {
   regularNumber: 0,
   totalPrice: 0,
   ticketPrice: 0,
-  sessionTimeLeft: 180000000,
+  sessionTimeLeft: 300,
   seats: [],
   foods: [],
 };

@@ -1,11 +1,21 @@
 @import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
 
 .filter-bar {
     @include flex(row, flex-start, center, nowrap, 15px);
 
+    @include media-query(small, max) {
+        @include flex-wrap(wrap);
+
+        .dx-textbox {
+            width: 100%;
+        }
+
+    }
+
     .dx-textbox {
-        &:last-child {
-            margin-left: auto;
+        &:first-child {
+            margin-right: auto;
         }
     }
 }

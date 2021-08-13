@@ -131,7 +131,7 @@ function CustomSchedule({ movie, cinema }) {
 
   const updateMovie = (date) => {
     const newCinemas =
-      showtimeList.length === 0
+      showtimeList.length === 0 || !movie.cinemas || movie.cinemas.length === 0
         ? [...(movie.cinemas || []), cinema.id]
         : [...movie.cinemas];
     const fromDate = Math.min(
@@ -148,7 +148,6 @@ function CustomSchedule({ movie, cinema }) {
       showing_from_date: fromDate,
       showing_to_date: toDate,
     };
-
     dispatch({ type: movieActions.UPDATE_MOVIE, payload: newMovie });
   };
 

@@ -1,4 +1,5 @@
 import { changeCurrentPath } from "app/features/common";
+import { APP_NAME } from "constants/common";
 import AdminHeader from "layouts/admin/adminHeader";
 import AdminMain from "layouts/admin/adminMain";
 import React, { useEffect } from "react";
@@ -13,6 +14,8 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   useEffect(() => {
+    const title = location.pathname.split("/")[1];
+    document.title = `${APP_NAME} │ ${title}`;
     if (
       location.pathname !== appRoutes.login.path &&
       location.pathname !== appRoutes.signup.path

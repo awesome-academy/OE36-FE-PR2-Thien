@@ -19,6 +19,7 @@ import FoodSelect from "pages/foodSelect";
 import TicketManager from "pages/admin/ticketManager";
 import Profile from "pages/profile";
 import PromotionDetails from "pages/promotionDetails";
+import NewsDetails from "pages/newsDetails";
 
 const ROUTES_CONFIG = {
   APP_ROUTES: {
@@ -80,10 +81,16 @@ const ROUTES_CONFIG = {
       component: MovieDetails,
     },
     promotionDetails: {
-      path: "/promotions/details/:movieId",
+      path: "/promotions/details/:promotionId",
       basePath: "/promotions/details/",
       exact: true,
       component: PromotionDetails,
+    },
+    newsDetails: {
+      path: "/news/details/:newsId",
+      basePath: "/news/details/",
+      exact: true,
+      component: NewsDetails,
     },
     offer: {
       path: "/movies/offer",

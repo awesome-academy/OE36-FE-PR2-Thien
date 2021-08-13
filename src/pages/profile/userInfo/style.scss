@@ -42,6 +42,7 @@
 
         .personal-data {
             width: 100%;
+            min-width: 0;
 
             &__name {
                 margin-bottom: 8px;

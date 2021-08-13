@@ -40,16 +40,18 @@ function Header() {
         <div className="sub-header__content container">
           <div className="sub-header__left">
             <div className="cinema-name">
-              <span>{showtime.cinemaName}</span>
+              <span>{showtime?.cinemaName}</span>
             </div>
             <div className="movie-name">
-              <span>{showtime.movieName}</span>
+              <span>{showtime?.movieName}</span>
             </div>
-            <div className="next-step">
-              <span>Next step</span>
-              <i className="fa fa-angle-right" aria-hidden="true"></i>
-              <span>{offer.nextStep}</span>
-            </div>
+            {offer?.nextStep && (
+              <div className="next-step">
+                <span>Next step</span>
+                <i className="fa fa-angle-right" aria-hidden="true"></i>
+                <span>{offer?.nextStep}</span>
+              </div>
+            )}
           </div>
           <div className="showtime">
             <span>{showtime?.time}</span>

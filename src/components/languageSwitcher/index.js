@@ -11,7 +11,9 @@ function LanguageSwitcher() {
     <div className="setting__language">
       <ul className="language-list">
         <li
-          className={`language-list__item ${i18n.language === "en" && "active"}`}
+          className={`language-list__item ${
+            i18n.language === "en" || i18n.language === "en-US" ? "active" : ""
+          }`}
           onClick={changeLanguage}
           data-value="en"
         >
@@ -19,7 +21,9 @@ function LanguageSwitcher() {
         </li>
         <span className="separate"></span>
         <li
-          className={`language-list__item ${i18n.language === "vi" && "active"}`}
+          className={`language-list__item ${
+            i18n.language === "vi" ? "active" : ""
+          }`}
           onClick={changeLanguage}
           data-value="vi"
         >

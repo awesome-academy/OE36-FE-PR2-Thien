@@ -40,7 +40,7 @@ function FilterBar({ onFiltersChange, filters, onCinemaChange }) {
 
   const handleChangeCinema = (cinema) => {
     onFiltersChange({ ...filters, _page: 1, cinemas_like: cinema.id });
-    if (typeof onCinemaChange === "function") {
+    if (onCinemaChange) {
       onCinemaChange(cinema);
     }
   };
@@ -55,6 +55,7 @@ function FilterBar({ onFiltersChange, filters, onCinemaChange }) {
 
   return (
     <div className="filter-bar">
+      <TextBox onKeyUp={handleChangeMovieName} placeholder={t("movieName")} />
       <SelectBox
         items={cinemaData}
         displayExpr="name"
@@ -75,7 +76,6 @@ function FilterBar({ onFiltersChange, filters, onCinemaChange }) {
         placeholder={t("genre")}
         onValueChange={handleChangeGenre}
       />
-      <TextBox onKeyUp={handleChangeMovieName} placeholder={t("movieName")} />
     </div>
   );
 }
