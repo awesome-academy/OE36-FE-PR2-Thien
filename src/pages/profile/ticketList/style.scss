@@ -1,0 +1,18 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.profile__tickets {
+    @include prefix(box-shadow, 0 1px 5px rgba(0, 0, 0, 0.1));
+    box-sizing: border-box;
+    padding: 20px 15px;
+    position: relative;
+    width: 100%;
+
+    ul {
+        @include scrollbar($color-alto, $color-manatee);
+        overflow-y: auto;
+        box-sizing: border-box;
+        max-height: 400px;
+        padding-right: 4px;
+    }
+}

@@ -4,6 +4,8 @@ import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 import { warning } from "react-toastify-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { changeShowLoading } from "app/features/common";
+import TicketItem from "../ticketItem";
+import "./style.scss";
 
 function TicketList() {
   const [tickets, setTickets] = useState([]);
@@ -23,7 +25,18 @@ function TicketList() {
       dispatch(warning(ERROR_NOTIFICATION));
     }
   }, []);
-  return <section className="profile__tickets">{tickets.length}</section>;
+  return (
+    <section className="profile__tickets">
+      <h2 className="content__title">Your tickets</h2>
+      <ul>
+        {tickets.map((ticket, index) => (
+          <li key={index}>
+            <TicketItem ticket={ticket} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 export default TicketList;
