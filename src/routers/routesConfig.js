@@ -17,6 +17,7 @@ import ShowtimeManager from "pages/admin/showtimeManager";
 import Payment from "pages/payment";
 import FoodSelect from "pages/foodSelect";
 import TicketManager from "pages/admin/ticketManager";
+import Profile from "pages/profile";
 
 const ROUTES_CONFIG = {
   APP_ROUTES: {
@@ -69,6 +70,7 @@ const ROUTES_CONFIG = {
     profile: {
       path: "/profile",
       exact: true,
+      component: Profile,
     },
     movieDetails: {
       path: "/movies/details/:movieId",

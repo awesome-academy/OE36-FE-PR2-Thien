@@ -8,6 +8,8 @@ import * as showtimeSaga from "./showtime/showtimeSagas";
 export default function* rootSaga() {
   yield all([
     fork(authSaga.watchSignup),
+    fork(authSaga.watchUpdate),
+    fork(authSaga.watchUpdateSuccess),
     fork(authSaga.watchLogin),
     fork(authSaga.watchSuccess),
     fork(authSaga.watchFail),

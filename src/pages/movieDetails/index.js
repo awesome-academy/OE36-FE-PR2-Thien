@@ -33,13 +33,13 @@ function MovieDetails({ match }) {
           dispatch(changeShowDate({ date: new Date() }));
         } else {
           history.push(appRoutes.movies.path);
-          dispatch(warning(response.data || ERROR_NOTIFICATION));
+          dispatch(warning(ERROR_NOTIFICATION));
         }
         window.scrollTo(0, 0);
         dispatch(changeShowLoading(false));
       });
     } catch (error) {
-      dispatch(warning(error.message || ERROR_NOTIFICATION));
+      dispatch(warning(error.message.data || ERROR_NOTIFICATION));
     }
   }, []);
 

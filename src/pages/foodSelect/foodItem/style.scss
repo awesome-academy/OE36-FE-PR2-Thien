@@ -2,6 +2,8 @@
 @import "src/assets/scss/variables";
 
 .food-item {
+    @include prefix(box-shadow, 0 1px 5px rgba(0, 0, 0, 0.1));
+    box-sizing: border-box;
     width: fit-content;
     box-sizing: border-box;
     padding: 20px;
