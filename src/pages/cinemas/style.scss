@@ -1,0 +1,101 @@
+@import "src/assets/scss/mixins";
+@import "src/assets/scss/variables";
+
+.cinemas-page {
+    padding: 30px 0;
+
+    .cinema-item {
+        position: relative;
+        margin-bottom: 20px;
+
+        img {
+            @include prefix(animation, gradientLoading 4s linear infinite forwards);
+            @include linear-gradient((0.25turn, $color-white 10%, $color-alto 50%, $color-white 90%));
+            background-size: 320px 640px;
+            height: 100%;
+            max-height: 350px;
+            width: 100%;
+        }
+
+        .cinema__info-wrap {
+            @include flex(row, space-between, center, nowrap, 15px);
+
+            @include media-query(medium, max) {
+                @include flex-direction(column);
+
+                .info__description {
+                    display: none;
+                }
+
+                a,
+                .dx-button {
+                    width: 100%;
+                }
+            }
+
+            @include media-query(small, max) {
+                @include align-items(flex-start);
+
+                .info__name {
+                    display: block;
+                }
+            }
+
+            border-radius: 5px;
+            bottom: 10px;
+            box-sizing: border-box;
+            position: absolute;
+            width: calc(100% - 30px);
+            background-color: $color-white;
+            padding: 10px 20px;
+            margin: 0 15px;
+
+            .info__content {
+                color: $color-manatee;
+            }
+
+
+
+            .info__name {
+                color: $color-black-pearl;
+                font-size: 18px;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+            }
+
+            .info__ticket-price {
+                font-size: 13px;
+            }
+
+            .info__description {
+                margin-top: 10px;
+                font-size: 12px;
+                color: $color-mirage;
+            }
+
+            .dx-button {
+                position: relative;
+
+                .dx-button-content {
+                    font-weight: 700;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                &::before {
+                    @include prefix(transition, all 0.3s);
+                    @include pseudo();
+                    background-color: $color-selective-yellow;
+                    height: 100%;
+                    left: 50%;
+                    width: 0;
+                }
+
+                &:hover::before {
+                    left: 0;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
