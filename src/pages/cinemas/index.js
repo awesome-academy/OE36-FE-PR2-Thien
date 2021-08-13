@@ -1,4 +1,5 @@
 import apiCinema from "apis/tasks/apiCinema";
+import { changeShowLoading } from "app/features/common";
 import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 import { Button } from "devextreme-react";
 import React, { useEffect, useState } from "react";
@@ -11,13 +12,16 @@ function Cinemas() {
   const [cinemas, setCinemas] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(changeShowLoading(true));
     try {
       apiCinema.get().then((response) => {
         if (response.status === 200) {
           setCinemas(response.data);
         }
+        dispatch(changeShowLoading(false));
       });
     } catch (err) {
+      dispatch(changeShowLoading(false));
       dispatch(warning(ERROR_NOTIFICATION));
     }
   }, []);
@@ -33,10 +37,11 @@ function Cinemas() {
               <div className="cinema__info-wrap">
                 <div className="cinema__info">
                   <h3 className="info__content">
-                    <span className="info__name">{cinema.name}</span> │  
+                    <span className="info__name">{cinema.name}</span> │
                     <span className="info__ticket-price">
-                      {formatMoney(cinema.regularTicketPrice)} VND 
-                    </span> │
+                      {formatMoney(cinema.regularTicketPrice)} VND
+                    </span>{" "}
+                    │
                     <span className="info__ticket-price">
                       {formatMoney(cinema.VIPTicketPrice)} VND
                     </span>

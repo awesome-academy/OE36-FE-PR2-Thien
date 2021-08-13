@@ -18,6 +18,7 @@ import Payment from "pages/payment";
 import FoodSelect from "pages/foodSelect";
 import TicketManager from "pages/admin/ticketManager";
 import Profile from "pages/profile";
+import PromotionDetails from "pages/promotionDetails";
 
 const ROUTES_CONFIG = {
   APP_ROUTES: {
@@ -77,6 +78,12 @@ const ROUTES_CONFIG = {
       basePath: "/movies/details/",
       exact: true,
       component: MovieDetails,
+    },
+    promotionDetails: {
+      path: "/promotions/details/:movieId",
+      basePath: "/promotions/details/",
+      exact: true,
+      component: PromotionDetails,
     },
     offer: {
       path: "/movies/offer",
