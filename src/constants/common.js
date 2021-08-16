@@ -1,4 +1,6 @@
-export const BASE_URL = "http://localhost:9000";
+export const APP_NAME = "CINE-APP";
+export const BASE_URL_DEVELOPMENT = "http://localhost:9000";
+export const BASE_URL_PRODUCTION = "https://cine-sun.herokuapp.com";
 export const YOUTUBE_EMBED_URL = "https://www.youtube-nocookie.com/embed/";
 export const EMBED_VIDEO_PARAM = "rel=0&controls=0&showinfo=0&autohide=1&modestbranding=0&loop=1&";
 

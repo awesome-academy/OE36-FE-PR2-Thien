@@ -29,6 +29,7 @@ function Home() {
         setComingSoon(comingSoon.data);
       });
     } catch (error) {
+      dispatch(changeShowLoading(false));
       dispatch(warning(error.message || ERROR_NOTIFICATION));
     }
   }, []);

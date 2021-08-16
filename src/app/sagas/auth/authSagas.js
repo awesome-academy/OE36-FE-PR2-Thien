@@ -123,7 +123,7 @@ export function* doSignupOrUpdate({ payload }) {
     }
     yield put(changeShowLoading(false));
   } catch (error) {
-    console.error(error);
+    yield put(warning(ERROR_NOTIFICATION));
   }
 }
 

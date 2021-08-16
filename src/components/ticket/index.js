@@ -11,46 +11,46 @@ function Ticket() {
       <h3>Tickets summary</h3>
       <div className="summary__content">
         <div className="movie">
-          <span className="movie__name title">{offer.movie.name}</span>
+          <span className="movie__name title">{offer.movie?.name}</span>
           <br />
           <span className="movie__language subtitle">
-            {offer.movie.language}
+            {offer.movie?.language}
           </span>
         </div>
         <div className="cinema">
           <div className="cinema__info ">
             <span className="info__name title">
-              {offer.showtime.cinemaName}
+              {offer.showtime?.cinemaName}
             </span>
             <span className="info__room subtitle">
-              Room: {offer.showtime.room}
+              Room: {offer.showtime?.room}
             </span>
           </div>
           <div className="ticket-info">
-            <p className="ticket__number title">{offer.seats.length}</p>
+            <p className="ticket__number title">{offer.seats?.length}</p>
             <p className="ticket__label subtitle">Ticket(s)</p>
           </div>
         </div>
         <div className="seats description">
           <p>
             {"Seats "}
-            {offer.seats.map((seat, index) => (
+            {offer.seats?.map((seat, index) => (
               <span key={index}> - {seat.name}</span>
             ))}
           </p>
         </div>
         <div className="time description">
           <span>
-            {formatDate(offer.showtime.date)} - {offer.showtime.time}
+            {formatDate(offer.showtime?.date)} - {offer.showtime?.time}
           </span>
         </div>
         <div className="ticket-price">
           <span>Ticket price</span>
-          <span>{formatMoney(offer.ticketPrice)} VND</span>
+          <span>{formatMoney(offer?.ticketPrice)} VND</span>
         </div>
       </div>
       <div className="add-on">
-        {offer.foods.map((food, index) => (
+        {offer.foods?.map((food, index) => (
           <div key={index}>
             <span>{food.name}</span>
             <span>

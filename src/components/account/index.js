@@ -1,6 +1,6 @@
 import { logout } from "app/features/account/accountSlice";
 import { IMAGE_COLLECTION } from "constants/collections";
-import { BASE_URL } from "constants/common";
+import baseUrl from "apis/utils/apiConfig";
 import useClickOutside from "hooks/useClickOutside";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -40,7 +40,7 @@ function Account() {
       <div className="account">
         <div className="account__avatar">
           {account.avatar ? (
-            <img src={`${BASE_URL}/${IMAGE_COLLECTION}/${account.avatar}`} />
+            <img src={`${baseUrl}/${IMAGE_COLLECTION}/${account.avatar}`} />
           ) : (
             <i className="fa fa-user"></i>
           )}

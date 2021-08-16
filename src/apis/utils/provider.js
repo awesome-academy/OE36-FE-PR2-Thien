@@ -1,13 +1,13 @@
 import axios from "axios";
-import { BASE_URL } from "constants/common";
+import baseUrl from "./apiConfig";
 import getAuthHeader from "utils/getAuthHeader";
 import getQueryString from "utils/queryString";
 import { handleError, handleResponse } from "./response";
 
 const get = (collection, filters = {}) => {
-  let queryString = getQueryString(filters);
+  const queryString = getQueryString(filters);
   return axios
-    .get(`${BASE_URL}/${collection}?${queryString}`, {
+    .get(`${baseUrl}/${collection}?${queryString}`, {
       headers: getAuthHeader(),
     })
     .then(handleResponse)
@@ -16,7 +16,7 @@ const get = (collection, filters = {}) => {
 
 const getById = (collection, id) => {
   return axios
-    .get(`${BASE_URL}/${collection}/${id}`, {
+    .get(`${baseUrl}/${collection}/${id}`, {
       headers: getAuthHeader(),
     })
     .then(handleResponse)
@@ -25,21 +25,21 @@ const getById = (collection, id) => {
 
 const post = (collection, model) => {
   return axios
-    .post(`${BASE_URL}/${collection}`, model, { headers: getAuthHeader() })
+    .post(`${baseUrl}/${collection}`, model, { headers: getAuthHeader() })
     .then(handleResponse)
     .catch(handleError);
 };
 
 const put = (collection, id, model) => {
   return axios
-    .put(`${BASE_URL}/${collection}/${id}`, model, { headers: getAuthHeader() })
+    .put(`${baseUrl}/${collection}/${id}`, model, { headers: getAuthHeader() })
     .then(handleResponse)
     .catch(handleError);
 };
 
 const remove = (collection, id) => {
   return axios
-    .delete(`${BASE_URL}/${collection}/${id}`, { headers: getAuthHeader() })
+    .delete(`${baseUrl}/${collection}/${id}`, { headers: getAuthHeader() })
     .then(handleResponse)
     .catch(handleError);
 };
@@ -50,7 +50,7 @@ const upload = (collection, files) => {
     formData.append(collection, files[index]);
   }
   return axios
-    .post(`${BASE_URL}/${collection}`, formData, {
+    .post(`${baseUrl}/${collection}`, formData, {
       headers: {
         ...getAuthHeader(),
         "Content-Type": "multipart/form-data",

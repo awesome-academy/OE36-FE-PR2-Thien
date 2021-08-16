@@ -1,10 +1,12 @@
+@import "src/assets/scss/mixins";
 @import "src/assets/scss/variables";
 
 .no-showtime-notification {
+    @include centerer;
     position: absolute;
     display: block;
     text-align: center;
-    width: 100%;
+    width: auto;
     z-index: 0;
 }
 

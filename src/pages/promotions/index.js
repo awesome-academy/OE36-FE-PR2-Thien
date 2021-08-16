@@ -5,7 +5,7 @@ import { ERROR_NOTIFICATION } from "constants/notificationMessage";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { warning } from "react-toastify-redux";
-import PromotionItem from "./components";
+import PromotionItem from "./components/promotionItem";
 import "./style.scss";
 
 function Promotions() {

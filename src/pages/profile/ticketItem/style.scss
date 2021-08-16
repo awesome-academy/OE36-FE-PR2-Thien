@@ -49,5 +49,13 @@
         &--approve {
             color: $color-selective-yellow;
         }
+
+        @include media-query(small, max) {
+            width: auto;
+
+            span {
+                display: none;
+            }
+        }
     }
 }

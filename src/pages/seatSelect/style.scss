@@ -11,6 +11,9 @@
 }
 
 .seats-main {
+    overflow: auto;
+    height: 100vh;
+
     .screen {
         background: url($image-screen) center no-repeat;
         background-size: contain;
@@ -45,6 +48,7 @@
                 @include flex-grow(1);
                 box-sizing: border-box;
                 height: 56px;
+                max-width: calc((100% - 70px) / 8);
                 padding-top: 10px;
                 text-align: center;
 
@@ -54,26 +58,25 @@
 
                 .seat {
                     @include align-center();
+                    @include box(22px);
                     cursor: pointer;
                     display: block;
                     background-size: cover !important;
-                    width: 25px;
-                    height: 25px;
 
                     &--available {
                         background: url($image-seat) no-repeat 0 0;
                     }
 
                     &--vip {
-                        background: url($image-seat) no-repeat 0 -145px;
+                        background: url($image-seat) no-repeat 0 -125px;
                     }
 
                     &--occupied {
-                        background: url($image-seat) no-repeat 0 -90px;
+                        background: url($image-seat) no-repeat 0 -80px;
                     }
 
                     &--selected {
-                        background: url($image-seat) no-repeat 0 -45px;
+                        background: url($image-seat) no-repeat 0 -39px;
                     }
                 }
             }

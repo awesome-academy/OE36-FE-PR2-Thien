@@ -11,6 +11,7 @@
 
 .login__content {
     max-width: 500px;
+    min-width: 300px;
     background-color: $color-white;
     border-radius: 5px;
     padding: 10px 40px 60px !important;
@@ -19,6 +20,27 @@
 
     @include media-query(medium, max) {
         padding: 10px 15px 60px !important;
+        top: 35%;
+
+        .login__header {
+            margin-top: 10px !important;
+        }
+
+        .login__form {
+            margin-top: 10px;
+
+            .input-field {
+                .dx-textbox {
+                    border-radius: 0 !important;
+                    margin: 10px 0 !important;
+                }
+            }
+
+            .form__action {
+                @include flex(row, space-between, center, nowrap);
+                margin-top: 20px !important;
+            }
+        }
     }
 
     .login__header {

@@ -1,5 +1,5 @@
 import { IMAGE_COLLECTION } from "constants/collections";
-import { BASE_URL } from "constants/common";
+import baseUrl from "apis/utils/apiConfig";
 import { PHONE_NUMBER_REGEX } from "constants/regex";
 import { Button, DateBox, TextBox, Validator } from "devextreme-react";
 import {
@@ -25,7 +25,7 @@ function UserInfo() {
   const [disable, setDisable] = useState(true);
   const [avatar, setAvatar] = useState(
     account.avatar
-      ? `${BASE_URL}/${IMAGE_COLLECTION}/${account.avatar}`
+      ? `${baseUrl}/${IMAGE_COLLECTION}/${account.avatar}`
       : defaultAvatar
   );
   const changeAvatar = (event) => {

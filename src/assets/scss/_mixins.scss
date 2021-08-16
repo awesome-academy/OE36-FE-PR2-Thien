@@ -14,6 +14,7 @@
   display: -webkit-flex;
   display: flex;
   gap: $gap;
+  grid-gap: $gap;
   @include flex-direction($direction);
   @include justify-content($content);
   @include align-items($items);
